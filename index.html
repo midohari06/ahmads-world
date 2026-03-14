@@ -14,7 +14,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
 
 /* ─── PASSWORD ─── */
 #password-screen{
-  position:fixed;inset:0;background:#000;z-index:200;
+  position:absolute;inset:0;background:#000;z-index:200;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   font-family:'Share Tech Mono',monospace;
 }
@@ -210,7 +210,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
     <div class="intro-name">MIDO<br><span>HARI</span></div>
     <div class="intro-sub">MECHANICAL ENGINEER &nbsp;·&nbsp; BUILDER &nbsp;·&nbsp; AUB BEIRUT</div>
     <div class="intro-line"></div>
-    <button class="intro-btn" onclick="startWorld()">ENTER THE CITY</button>
+    <button class="intro-btn" id="enter-btn">ENTER THE CITY</button>
     <div class="intro-scroll">// WASD TO MOVE · MOUSE TO LOOK · WALK INTO BUILDINGS //</div>
   </div>
 
@@ -653,7 +653,7 @@ function makeBuilding(d){
   const mat=new THREE.MeshStandardMaterial({color:0x05081a,emissive:new THREE.Color(d.color).multiplyScalar(0.07),roughness:0.8,metalness:0.5});
   const mesh=new THREE.Mesh(geo,mat);mesh.position.y=d.h/2;mesh.castShadow=true;mesh.receiveShadow=true;
   g.add(mesh);
-  g.add(Object.assign(new THREE.LineSegments(new THREE.EdgesGeometry(geo),new THREE.LineBasicMaterial({color:d.color,opacity:0.55,transparent:true})),{position:{y:d.h/2,x:0,z:0}}));
+  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(geo),new THREE.LineBasicMaterial({color:d.color,opacity:0.55,transparent:true}));edges.position.set(0,d.h/2,0);g.add(edges);
 
   // Windows
   const rows=Math.floor(d.h/2.6),cols=Math.floor(d.w/1.3);
@@ -825,9 +825,10 @@ function startWorld(){
   worldStarted=true;
   const intro=document.getElementById('intro');
   intro.classList.add('fade');
-  setTimeout(()=>{intro.style.display='none';document.getElementById('agent-btn').style.display='block';},1800);
+  setTimeout(()=>{intro.remove();document.getElementById('agent-btn').style.display='block';},1800);
 }
 window.startWorld=startWorld;
+document.getElementById('enter-btn').addEventListener('click',startWorld);
 
 // ─── GAME LOOP ───
 const clock=new THREE.Clock();let t=0;
@@ -916,7 +917,7 @@ window.addEventListener('resize',()=>{
 // window.ANTHROPIC_API_KEY = 'sk-ant-...your-key-here...';
 </script>
 <script>
-function checkPassword(){var val=document.getElementById("pw-input").value;var err=document.getElementById("pw-error");if(val==="09092006"){var s=document.getElementById("password-screen");s.style.transition="opacity 1s ease";s.style.opacity="0";s.style.pointerEvents="none";setTimeout(function(){s.style.display="none";},1000);}else{err.classList.add("show");document.getElementById("pw-input").value="";document.getElementById("pw-input").style.borderBottomColor="#ff2d78";setTimeout(function(){err.classList.remove("show");document.getElementById("pw-input").style.borderBottomColor="#00f5ff44";},2000);}}
+function checkPassword(){var val=document.getElementById("pw-input").value;var err=document.getElementById("pw-error");if(val==="09092006"){var s=document.getElementById("password-screen");s.style.transition="opacity 1s ease";s.style.opacity="0";s.style.pointerEvents="none";setTimeout(function(){s.remove();},800);}else{err.classList.add("show");document.getElementById("pw-input").value="";document.getElementById("pw-input").style.borderBottomColor="#ff2d78";setTimeout(function(){err.classList.remove("show");document.getElementById("pw-input").style.borderBottomColor="#00f5ff44";},2000);}}
 document.getElementById("pw-input").addEventListener("keydown",function(e){if(e.key==="Enter")checkPassword();});
 window.checkPassword=checkPassword;
 </script>
