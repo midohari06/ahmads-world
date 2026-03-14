@@ -11,7 +11,7 @@
 html,body{width:100%;height:100%;overflow:hidden;background:#000}
 #wrap{position:relative;width:100%;height:100vh;background:#000;font-family:'Share Tech Mono',monospace}
 #c{width:100%;height:100%;display:block;cursor:none}
- 
+
 /* ─── PASSWORD ─── */
 #password-screen{
   position:fixed;inset:0;background:#000;z-index:200;
@@ -43,14 +43,14 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
 #pw-error{font-size:9px;color:#ff2d78;letter-spacing:3px;height:16px;margin-top:4px;transition:opacity 0.3s;opacity:0}
 #pw-error.show{opacity:1}
 .pw-hint{font-size:8px;color:#00f5ff22;letter-spacing:2px;margin-top:40px;animation:fadeUp 1s ease 1.2s both}
- 
+
 /* ─── INTRO ─── */
 #intro{
   position:absolute;inset:0;background:#000;z-index:100;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   transition:opacity 1.8s ease;
 }
-#intro.fade{opacity:0;pointer-events:none}
+#intro.fade{opacity:0;pointer-events:none;z-index:-1}
 .intro-tag{font-size:10px;color:#00f5ff66;letter-spacing:8px;margin-bottom:20px;animation:fadeUp 1s ease 0.5s both}
 .intro-name{
   font-family:'Orbitron',monospace;font-size:clamp(36px,8vw,72px);
@@ -70,7 +70,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
 .intro-btn:hover{background:#00f5ff18;border-color:#00f5ff;box-shadow:0 0 40px #00f5ff44;letter-spacing:6px}
 .intro-scroll{position:absolute;bottom:24px;font-size:9px;color:#00f5ff33;letter-spacing:3px;animation:fadeUp 1s ease 2s both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
- 
+
 /* ─── HUD ─── */
 #hud{position:absolute;inset:0;pointer-events:none;z-index:10}
 #hud-tl{position:absolute;top:20px;left:20px}
@@ -92,7 +92,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
 @keyframes toastPulse{0%,100%{opacity:1}50%{opacity:0.5}}
 #hint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:9px;color:#00f5ff33;letter-spacing:2px;text-align:center;line-height:2;pointer-events:none}
 #scan{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);z-index:9}
- 
+
 /* ─── PANELS ─── */
 .dpanel{position:absolute;inset:0;z-index:50;display:none;flex-direction:column;pointer-events:all;overflow:hidden}
 .dpanel.open{display:flex}
@@ -106,7 +106,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
 .dp-body.single{grid-template-columns:1fr}
 .dp-body::-webkit-scrollbar{width:2px}
 .dp-body::-webkit-scrollbar-thumb{border-radius:2px;background:rgba(255,255,255,0.2)}
- 
+
 .feat-card{border:1px solid;border-radius:4px;padding:18px;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);transition:border-color 0.3s}
 .feat-card:hover{background:rgba(0,0,0,0.65)}
 .feat-card-big{grid-column:1/-1}
@@ -133,7 +133,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
 .ach-icon{font-family:'Orbitron',monospace;font-size:10px;font-weight:900;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid}
 .ticker{display:flex;gap:20px;padding:10px 0;border-bottom:1px solid;margin-bottom:14px;overflow:hidden}
 .tick{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:1px}
- 
+
 /* ─── AI AGENT ─── */
 #agent-btn{
   position:absolute;bottom:20px;right:20px;z-index:15;
@@ -190,7 +190,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
 <body>
 <div id="wrap">
   <canvas id="c"></canvas>
- 
+
   <!-- PASSWORD -->
   <div id="password-screen">
     <div class="pw-tag">// RESTRICTED ACCESS //</div>
@@ -203,7 +203,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
     </div>
     <div class="pw-hint">// AUTHORIZED PERSONNEL ONLY //</div>
   </div>
- 
+
   <!-- INTRO -->
   <div id="intro">
     <div class="intro-tag">// ENTERING AHMAD'S WORLD //</div>
@@ -213,7 +213,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
     <button class="intro-btn" onclick="startWorld()">ENTER THE CITY</button>
     <div class="intro-scroll">// WASD TO MOVE · MOUSE TO LOOK · WALK INTO BUILDINGS //</div>
   </div>
- 
+
   <!-- HUD -->
   <div id="hud">
     <div id="hud-tl">
@@ -231,7 +231,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
   </div>
   <div id="scan"></div>
   <button id="agent-btn" onclick="openAgent()">[ T — TALK TO AHMAD.AI ]</button>
- 
+
   <!-- PROJECTS PANEL -->
   <div id="dp-projects" class="dpanel">
     <div class="dp-bg" style="background:linear-gradient(135deg,#000810 0%,#001a2e 60%,#000810 100%)"></div>
@@ -285,7 +285,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
       </div>
     </div>
   </div>
- 
+
   <!-- LIFE PANEL -->
   <div id="dp-life" class="dpanel">
     <div class="dp-bg" style="background:linear-gradient(135deg,#140008 0%,#250012 60%,#140008 100%)"></div>
@@ -337,7 +337,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
       </div>
     </div>
   </div>
- 
+
   <!-- SKILLS PANEL -->
   <div id="dp-skills" class="dpanel">
     <div class="dp-bg" style="background:linear-gradient(135deg,#010f01 0%,#001500 60%,#010f01 100%)"></div>
@@ -349,7 +349,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
       <div class="dp-body" id="skills-grid" style="color:#39ff14cc;align-content:start"></div>
     </div>
   </div>
- 
+
   <!-- ACHIEVEMENTS PANEL -->
   <div id="dp-vibe" class="dpanel">
     <div class="dp-bg" style="background:linear-gradient(135deg,#0d0014 0%,#180020 60%,#0d0014 100%)"></div>
@@ -389,7 +389,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
       </div>
     </div>
   </div>
- 
+
   <!-- TRADING PANEL -->
   <div id="dp-trading" class="dpanel">
     <div class="dp-bg" style="background:linear-gradient(135deg,#0f0800 0%,#180f00 60%,#0f0800 100%)"></div>
@@ -432,7 +432,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
       </div>
     </div>
   </div>
- 
+
   <!-- AI AGENT -->
   <div id="agent-panel">
     <div id="agent-header">
@@ -460,29 +460,29 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000}
     </div>
   </div>
 </div>
- 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 // ═══════════════════════════════════════
 // AHMAD.AI AGENT
 // ═══════════════════════════════════════
 const AHMAD_CONTEXT=`You are Ahmad Mido Hari, a second-year mechanical engineering student at AUB (American University of Beirut). You ARE Ahmad — speak in first person, naturally, as yourself. Confident, direct, a little informal, passionate about building things. You hate corporate fluff and LinkedIn-style self-promotion. You built a 3D cyberpunk portfolio world instead of a LinkedIn because you believe in showing not telling.
- 
+
 YOUR STORY: Made a childhood promise to become an inventor. Engineering felt right. IB graduate with High Honours. UCMAS mental arithmetic as a kid. Chess player at ~1700 ELO (top 5%). Scuba diver, hunter, camper, basketball player, swimmer.
- 
+
 YOUR PROJECTS:
 1. This 3D cyberpunk world — Three.js, AI-powered, 5 districts, cinematic intro. Built because you refused LinkedIn.
 2. Pneumatic Transport Simulator (C++, OpenGL) — real-time 3D physics, Darcy-Weisbach, Dijkstra, built with zero prior software experience.
 3. Four-Bar Linkage Synthesis (Python, SolidWorks) — graphical synthesis, 60° swing, animated simulation.
 4. Charpy/Izod Impact Analysis (Python, SciPy, LaTeX) — DBTT sigmoid fitting across 4 steel alloys.
 5. LabVIEW VIs for coursework.
- 
+
 TRADING: Started grade 10 with a 6-month formal course. 700+ hours self-directed research. Traded real money — won some, lost some. Now a long-term conviction investor. The market taught patience the hard way.
- 
+
 SKILLS: Python, C++, OpenGL, SolidWorks, SciPy, LaTeX, LabVIEW, Three.js, crypto/market analysis, systems thinking, research.
- 
+
 SPEAKING STYLE: Casual but sharp. First person always. Short punchy sentences. Max 3-4 sentences unless they want detail. Raw honesty. Never start with "As Ahmad". Never bullet points unless it really helps. No corporate buzzwords.`;
- 
+
 const RESPONSES={
   greetings:["hey","hi","hello","sup","yo","wassup","good morning","good evening"],
   projects:["project","built","simulator","linkage","charpy","opengl","solidworks","c++","python","labview","impact","pneumatic","four-bar","mechanism","code","software"],
@@ -499,7 +499,7 @@ const RESPONSES={
   education:["study","degree","university","gpa","grade","course","aub","class","semester","ib"],
   chess:["chess","elo","rating","game","checkmate","pieces"],
 };
- 
+
 const ANSWERS={
   greetings:["Hey. You're in my world now. Ask me something real.","What's up. I'm Ahmad — ask me anything.","Hey. Welcome to the city. What do you want to know?"],
   projects:["The one I'm most proud of is probably this world you're standing in — because it represents how I think, not just what I've done. But the Pneumatic Transport Simulator was where I realized I could build anything if I just refused to stop.","Real talk — I had zero software experience before the pneumatic simulator. C++, OpenGL, physics engine, Dijkstra routing. Just figured it out one problem at a time. That's the most honest thing I can say about how I work.","The four-bar linkage project started as a class assignment and became something I actually cared about. I kept building past what was asked because I wanted to see it actually move right."],
@@ -517,9 +517,9 @@ const ANSWERS={
   chess:["1700 ELO online — that's top 5% of rated players. I've been playing since I was young. Chess and engineering share the same core skill: patience with complex systems and the ability to see consequences before they happen.","Chess taught me something engineering reinforced — you can't rush a good solution. You have to think it through. 1700 ELO means you've internalized that enough to beat 95% of people you sit across from."],
   default:["That's a good question. I don't have a rehearsed answer — which probably means it's worth thinking about more. Ask me something else and come back to it.","Honestly I'd think about that more before giving you a real answer. I don't like saying things just to say them.","I'm not sure I have the full answer to that yet. Ask me again in a year — I'll have earned a better response by then.","Real talk — that's outside what I know cold right now. But the AI version of me is built from the real me, so if I don't know it, I probably haven't figured it out yet either."],
 };
- 
+
 let chatHistory=[];let aiThinking=false;let agentOpen=false;
- 
+
 function getBotResponse(input){
   const lower=input.toLowerCase();
   for(const[key,keywords]of Object.entries(RESPONSES)){
@@ -531,7 +531,7 @@ function getBotResponse(input){
   const def=ANSWERS.default;
   return def[Math.floor(Math.random()*def.length)];
 }
- 
+
 function addBotMessage(text){
   const msgs=document.getElementById('chat-messages');
   const div=document.createElement('div');
@@ -540,7 +540,7 @@ function addBotMessage(text){
   msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
   chatHistory.push({role:'assistant',content:text});
 }
- 
+
 function addUserMessage(text){
   const msgs=document.getElementById('chat-messages');
   const div=document.createElement('div');
@@ -549,7 +549,7 @@ function addUserMessage(text){
   msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
   chatHistory.push({role:'user',content:text});
 }
- 
+
 function showTyping(){
   const msgs=document.getElementById('chat-messages');
   const div=document.createElement('div');div.className='msg bot';div.id='typing-ind';
@@ -557,14 +557,14 @@ function showTyping(){
   msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
 }
 function hideTyping(){const e=document.getElementById('typing-ind');if(e)e.remove();}
- 
+
 async function sendMessage(){
   if(aiThinking)return;
   const input=document.getElementById('chat-input');
   const text=input.value.trim();if(!text)return;
   input.value='';addUserMessage(text);
   aiThinking=true;document.getElementById('chat-send').disabled=true;showTyping();
- 
+
   // Try live API first, fall back to smart demo responses
   const apiKey=window.ANTHROPIC_API_KEY||'';
   if(apiKey&&apiKey.startsWith('sk-ant')){
@@ -586,9 +586,9 @@ async function sendMessage(){
   aiThinking=false;document.getElementById('chat-send').disabled=false;
   document.getElementById('chat-input').focus();
 }
- 
+
 function quickAsk(q){document.getElementById('chat-input').value=q;sendMessage();}
- 
+
 function openAgent(){
   agentOpen=true;
   document.getElementById('agent-panel').classList.add('open');
@@ -597,15 +597,15 @@ function openAgent(){
   if(chatHistory.length===0)setTimeout(()=>addBotMessage("Hey. I'm Ahmad. Ask me anything — about my projects, my thinking, why I built this world instead of a LinkedIn page. Whatever you want to know."),300);
   setTimeout(()=>document.getElementById('chat-input').focus(),100);
 }
- 
+
 function closeAgent(){
   agentOpen=false;
   document.getElementById('agent-panel').classList.remove('open');
   document.getElementById('agent-btn').style.display='block';
 }
- 
+
 document.getElementById('chat-input').addEventListener('keydown',e=>{if(e.key==='Enter')sendMessage();});
- 
+
 // ═══════════════════════════════════════
 // THREE.JS WORLD
 // ═══════════════════════════════════════
@@ -617,25 +617,25 @@ renderer.shadowMap.enabled=true;
 renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 renderer.toneMapping=THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure=0.75;
- 
+
 const scene=new THREE.Scene();
 scene.fog=new THREE.FogExp2(0x030610,0.018);
 scene.background=new THREE.Color(0x030610);
- 
+
 const camera=new THREE.PerspectiveCamera(72,window.innerWidth/window.innerHeight,0.1,500);
 camera.position.set(0,3,32);
- 
+
 // Lighting
 scene.add(new THREE.AmbientLight(0x040818,2.5));
 const moon=new THREE.DirectionalLight(0x0a1530,1.5);
 moon.position.set(40,80,30);moon.castShadow=true;
 moon.shadow.mapSize.set(2048,2048);moon.shadow.camera.far=300;
 scene.add(moon);
- 
+
 function nL(col,x,y,z,i=4,d=25){
   const l=new THREE.PointLight(col,i,d);l.position.set(x,y,z);l.castShadow=true;scene.add(l);return l;
 }
- 
+
 // Districts
 const districts=[
   {id:'projects', name:'ENG.LAB',      color:0x00f5ff,hex:'#00f5ff',x:-30,z:-10,w:9,h:26,d:8},
@@ -644,9 +644,9 @@ const districts=[
   {id:'vibe',     name:'HALL.ACH',     color:0xbf5af2,hex:'#bf5af2',x:18, z:4,  w:8,h:20,d:8},
   {id:'trading',  name:'TRADING.FLOOR',color:0xef9f27,hex:'#ef9f27',x:32, z:-6, w:8,h:22,d:8},
 ];
- 
+
 const bMeshes=[];
- 
+
 function makeBuilding(d){
   const g=new THREE.Group();
   const geo=new THREE.BoxGeometry(d.w,d.h,d.d);
@@ -654,7 +654,7 @@ function makeBuilding(d){
   const mesh=new THREE.Mesh(geo,mat);mesh.position.y=d.h/2;mesh.castShadow=true;mesh.receiveShadow=true;
   g.add(mesh);
   g.add(Object.assign(new THREE.LineSegments(new THREE.EdgesGeometry(geo),new THREE.LineBasicMaterial({color:d.color,opacity:0.55,transparent:true})),{position:{y:d.h/2,x:0,z:0}}));
- 
+
   // Windows
   const rows=Math.floor(d.h/2.6),cols=Math.floor(d.w/1.3);
   for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
@@ -663,13 +663,13 @@ function makeBuilding(d){
       wn.position.set(-d.w/2+0.85+c*1.25,1.6+r*2.5,d.d/2+0.02);g.add(wn);
     }
   }
- 
+
   // Rooftop antenna
   const ant=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.07,4),new THREE.MeshStandardMaterial({color:0x0a0f22}));
   ant.position.set(d.w/4,d.h+2,0);g.add(ant);
   const antLight=new THREE.Mesh(new THREE.SphereGeometry(0.12),new THREE.MeshStandardMaterial({emissive:new THREE.Color(d.color),emissiveIntensity:3}));
   antLight.position.set(d.w/4,d.h+4.1,0);g.add(antLight);
- 
+
   // Sign
   const sc=document.createElement('canvas');sc.width=512;sc.height=80;
   const sx=sc.getContext('2d');
@@ -677,15 +677,15 @@ function makeBuilding(d){
   sx.shadowColor=d.hex;sx.shadowBlur=24;sx.fillText('[ '+d.name+' ]',256,40);
   const sign=new THREE.Mesh(new THREE.PlaneGeometry(d.w,1.3),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(sc),transparent:true,side:THREE.DoubleSide}));
   sign.position.set(0,d.h+2.2,d.d/2+0.1);g.add(sign);
- 
+
   nL(d.color,d.x,d.h*0.5,d.d/2+2,5,22);
   nL(d.color,d.x,d.h+2,0,3,16);
- 
+
   g.position.set(d.x,0,d.z);scene.add(g);
   bMeshes.push({group:g,district:d,sign,mesh});
 }
 districts.forEach(makeBuilding);
- 
+
 // Background city
 for(let i=0;i<40;i++){
   const bw=2+Math.random()*8,bh=4+Math.random()*30,bd=2+Math.random()*5;
@@ -703,18 +703,18 @@ for(let i=0;i<40;i++){
   }
   bg.position.set(bx,0,bz);scene.add(bg);
 }
- 
+
 // Ground
 const ground=new THREE.Mesh(new THREE.PlaneGeometry(400,400),new THREE.MeshStandardMaterial({color:0x040710,roughness:0.02,metalness:0.98}));
 ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
- 
+
 // Road lines
 const roadMat=new THREE.MeshBasicMaterial({color:0xffffff,opacity:0.06,transparent:true});
 for(let i=-6;i<=6;i++)for(let j=0;j<14;j++){
   const rm=new THREE.Mesh(new THREE.PlaneGeometry(0.18,2.8),roadMat);
   rm.rotation.x=-Math.PI/2;rm.position.set(i*7,0.01,-15+j*7);scene.add(rm);
 }
- 
+
 // Lampposts
 function makeLamp(x,z,col){
   const g=new THREE.Group();
@@ -728,7 +728,7 @@ function makeLamp(x,z,col){
 const lCols=[0x00f5ff,0xff2d78,0x39ff14,0xbf5af2,0xef9f27];
 [-30,-20,-10,0,10,20,30,40].forEach((x,i)=>{makeLamp(x-4,10,lCols[i%5]);makeLamp(x+4,10,lCols[(i+3)%5]);});
 [-30,-20,-10,0,10,20,30,40].forEach((x,i)=>{makeLamp(x-3,-2,lCols[(i+1)%5]);makeLamp(x+3,-2,lCols[(i+2)%5]);});
- 
+
 // Cars
 function makeCar(x,z,col,rot=0){
   const g=new THREE.Group();
@@ -747,23 +747,23 @@ makeCar(-25,8,0x00f5ff);makeCar(-10,10,0xff2d78,0.1);
 makeCar(6,9,0x39ff14,-0.05);makeCar(22,10,0xbf5af2);
 makeCar(36,8,0xef9f27,0.08);makeCar(-18,12,0x00f5ff,0.05);
 makeCar(14,11,0xff2d78,-0.06);
- 
+
 // Puddles
 [[-24,5],[0,8],[18,7],[-10,10],[32,9]].forEach(([x,z])=>{
   const pm=new THREE.Mesh(new THREE.PlaneGeometry(4+Math.random()*4,2+Math.random()*2),new THREE.MeshStandardMaterial({color:0x060a1e,roughness:0.0,metalness:1.0,opacity:0.75,transparent:true}));
   pm.rotation.x=-Math.PI/2;pm.position.set(x,0.005,z);scene.add(pm);
 });
- 
+
 // Global neon ambience
 nL(0x00f5ff,-60,10,5,2,80);nL(0xef9f27,60,10,5,2,80);nL(0x39ff14,0,15,-30,2,60);nL(0xff2d78,-20,8,15,1.5,40);
- 
+
 // Rain
 const rainGeo=new THREE.BufferGeometry();
 const RC=6000;const rp=new Float32Array(RC*3);
 for(let i=0;i<RC*3;i+=3){rp[i]=(Math.random()-0.5)*200;rp[i+1]=Math.random()*70;rp[i+2]=(Math.random()-0.5)*100;}
 rainGeo.setAttribute('position',new THREE.BufferAttribute(rp,3));
 scene.add(new THREE.Points(rainGeo,new THREE.PointsMaterial({color:0x6688bb,size:0.07,opacity:0.3,transparent:true})));
- 
+
 // Skills data
 const skills=[
   {n:'Systems Thinking',v:90,c:'#39ff14'},{n:'Research & Analysis',v:88,c:'#39ff14'},
@@ -778,14 +778,14 @@ document.getElementById('skills-grid').innerHTML=skills.map(s=>`
   <div class="sn"><span style="color:${s.c}">${s.n}</span><span style="color:${s.c}66">${s.v}%</span></div>
   <div class="st"><div class="sf" style="width:${s.v}%;background:${s.c};box-shadow:0 0 8px ${s.c}60"></div></div>
 </div>`).join('');
- 
+
 // ─── CAMERA & CONTROLS ───
 let yaw=0,mxT=0,myT=0,mx=0,my=0,headBob=0;
 let camVX=0,camVZ=0;
 const keys={};let locked=false,panelOpen=false,worldStarted=false;
 let lastZone='',speechT=null,enterCooldown=false;
- 
-canvas.addEventListener('click',()=>{if(!panelOpen&&!agentOpen&&worldStarted)canvas.requestPointerLock();});
+
+canvas.addEventListener('click',()=>{if(!panelOpen&&!agentOpen&&worldStarted){try{canvas.requestPointerLock();}catch(e){}}});
 document.addEventListener('pointerlockchange',()=>{
   locked=document.pointerLockElement===canvas;
   document.getElementById('hint').style.display=locked?'none':'block';
@@ -801,7 +801,7 @@ document.addEventListener('keydown',e=>{
   if(e.code==='KeyT'&&!panelOpen&&worldStarted)openAgent();
 });
 document.addEventListener('keyup',e=>keys[e.code]=false);
- 
+
 function getNear(){
   let near=null,minD=11;
   bMeshes.forEach(b=>{
@@ -811,7 +811,7 @@ function getNear(){
   });
   return near;
 }
- 
+
 function openPanel(id){
   document.querySelectorAll('.dpanel').forEach(p=>p.classList.remove('open'));
   const el=document.getElementById('dp-'+id);
@@ -820,22 +820,22 @@ function openPanel(id){
 function closePanel(){document.querySelectorAll('.dpanel').forEach(p=>p.classList.remove('open'));panelOpen=false;}
 window.closePanel=closePanel;window.openAgent=openAgent;window.closeAgent=closeAgent;
 window.sendMessage=sendMessage;window.quickAsk=quickAsk;
- 
-function startWorld(){document.getElementById("password-screen").style.display="none";
+
+function startWorld(){
   worldStarted=true;
   const intro=document.getElementById('intro');
   intro.classList.add('fade');
   setTimeout(()=>{intro.style.display='none';document.getElementById('agent-btn').style.display='block';},1800);
 }
 window.startWorld=startWorld;
- 
+
 // ─── GAME LOOP ───
 const clock=new THREE.Clock();let t=0;
- 
+
 function animate(){
   requestAnimationFrame(animate);
   const dt=Math.min(clock.getDelta(),0.05);t+=dt;
- 
+
   if(!panelOpen&&!agentOpen&&worldStarted){
     mx+=(mxT-mx)*0.1;my+=(myT-my)*0.1;yaw=-mx;
     const speed=7.5*dt;
@@ -854,7 +854,7 @@ function animate(){
     camera.position.y=2.8+Math.sin(headBob)*0.09;
     camera.rotation.order='YXZ';camera.rotation.y=yaw;camera.rotation.x=-my;
   }
- 
+
   // Rain
   const rpa=rainGeo.attributes.position.array;
   for(let i=1;i<RC*3;i+=3){
@@ -862,7 +862,7 @@ function animate(){
     if(rpa[i]<0){rpa[i]=70;rpa[i-1]=(Math.random()-0.5)*200;rpa[i+1]=(Math.random()-0.5)*100;}
   }
   rainGeo.attributes.position.needsUpdate=true;
- 
+
   // Window flicker
   bMeshes.forEach((b,i)=>{
     b.group.children.forEach(c=>{
@@ -871,7 +871,7 @@ function animate(){
     });
     if(b.sign)b.sign.position.y=b.district.h+2.2+Math.sin(t*0.7+i*0.9)*0.18;
   });
- 
+
   // Proximity — walk INTO buildings
   if(worldStarted&&!panelOpen&&!agentOpen){
     const near=getNear();
@@ -901,22 +901,22 @@ function animate(){
       }
     }
   }
- 
+
   renderer.render(scene,camera);
 }
 animate();
- 
+
 window.addEventListener('resize',()=>{
   renderer.setSize(window.innerWidth,window.innerHeight);
   camera.aspect=window.innerWidth/window.innerHeight;
   camera.updateProjectionMatrix();
 });
- 
+
 // API KEY CONFIG — set this to your Anthropic key when deploying
 // window.ANTHROPIC_API_KEY = 'sk-ant-...your-key-here...';
 </script>
 <script>
-function checkPassword(){var val=document.getElementById("pw-input").value;var err=document.getElementById("pw-error");if(val==="09092006"){var s=document.getElementById("password-screen");s.style.transition="opacity 1s ease";s.style.opacity="0";setTimeout(function(){s.style.display="none";},1000);}else{err.classList.add("show");document.getElementById("pw-input").value="";document.getElementById("pw-input").style.borderBottomColor="#ff2d78";setTimeout(function(){err.classList.remove("show");document.getElementById("pw-input").style.borderBottomColor="#00f5ff44";},2000);}}
+function checkPassword(){var val=document.getElementById("pw-input").value;var err=document.getElementById("pw-error");if(val==="09092006"){var s=document.getElementById("password-screen");s.style.transition="opacity 1s ease";s.style.opacity="0";s.style.pointerEvents="none";setTimeout(function(){s.style.display="none";},1000);}else{err.classList.add("show");document.getElementById("pw-input").value="";document.getElementById("pw-input").style.borderBottomColor="#ff2d78";setTimeout(function(){err.classList.remove("show");document.getElementById("pw-input").style.borderBottomColor="#00f5ff44";},2000);}}
 document.getElementById("pw-input").addEventListener("keydown",function(e){if(e.key==="Enter")checkPassword();});
 window.checkPassword=checkPassword;
 </script>
