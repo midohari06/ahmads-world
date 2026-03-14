@@ -3,646 +3,519 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ahmad Mido Hari — World Portfolio</title>
-<meta name="description" content="Ahmad Mido Hari — Mechanical Engineering Student at AUB. Enter my world.">
+<title>Ahmad Mido Hari — Enter My World</title>
+<meta name="description" content="Ahmad Mido Hari. Mechanical Engineer. Builder. Sidon, Lebanon.">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;height:100%;overflow:hidden;background:#000}
-#wrap{position:relative;width:100%;height:100vh;background:#000;font-family:'Share Tech Mono',monospace}
+
+#pw-screen{position:fixed;inset:0;z-index:300;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.pw-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,#1a0f0211 0%,transparent 60%)}
+.pw-c{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:20px;animation:fUp 1.2s ease both}
+@keyframes fUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.pw-ey{font-family:'Share Tech Mono',monospace;font-size:8px;color:#c8a96633;letter-spacing:8px}
+.pw-nm{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,9vw,88px);font-weight:300;color:#c8a966;letter-spacing:10px;text-shadow:0 0 60px #c8a96622;line-height:0.88;text-align:center}
+.pw-nm em{font-style:italic;color:#f4d080;display:block;font-size:0.55em;letter-spacing:14px;margin-top:8px}
+.pw-div{width:50px;height:1px;background:#c8a96622;margin:4px auto}
+.pw-sb{font-family:'Share Tech Mono',monospace;font-size:8px;color:#c8a96622;letter-spacing:3px;text-align:center;line-height:2.2}
+#pw-i{background:transparent;border:none;border-bottom:1px solid #c8a96633;color:#c8a966;font-family:'Share Tech Mono',monospace;font-size:18px;letter-spacing:12px;text-align:center;outline:none;width:180px;padding:10px 0;caret-color:#c8a966;margin-top:12px}
+#pw-i::placeholder{color:#c8a96618;letter-spacing:6px;font-size:12px}
+#pw-er{font-family:'Share Tech Mono',monospace;font-size:8px;color:#c8643a;letter-spacing:3px;height:12px;opacity:0;transition:opacity 0.3s}
+#pw-er.on{opacity:1}
+#pw-b{font-family:'Share Tech Mono',monospace;font-size:8px;background:transparent;border:1px solid #c8a96622;color:#c8a96655;padding:10px 28px;cursor:pointer;letter-spacing:5px;transition:all 0.4s}
+#pw-b:hover{border-color:#c8a966;color:#c8a966;background:#c8a9660a}
+.pw-ft{position:absolute;bottom:20px;font-family:'Share Tech Mono',monospace;font-size:7px;color:#c8a96618;letter-spacing:2px}
+
+#intro{position:fixed;inset:0;z-index:200;background:#000;display:none;flex-direction:column;align-items:center;justify-content:center;transition:opacity 2s ease}
+#intro.fade{opacity:0;pointer-events:none}
+.i-loc{font-family:'Share Tech Mono',monospace;font-size:8px;color:#c8a96633;letter-spacing:8px;margin-bottom:18px;animation:fUp 1s ease 0.3s both}
+.i-nm{font-family:'Cormorant Garamond',serif;font-size:clamp(50px,11vw,100px);font-weight:300;color:#c8a966;letter-spacing:8px;line-height:0.85;text-align:center;animation:fUp 1s ease 0.6s both;text-shadow:0 0 80px #c8a96633}
+.i-nm em{font-style:italic;color:#f4d080;display:block;font-size:0.58em;letter-spacing:14px;margin-top:8px}
+.i-ln{width:70px;height:1px;background:#c8a96622;margin:26px auto;animation:fUp 1s ease 0.9s both}
+.i-sb{font-family:'Share Tech Mono',monospace;font-size:9px;color:#c8a96644;letter-spacing:4px;animation:fUp 1s ease 1.1s both;text-align:center;line-height:2.4}
+#eb{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:300;font-style:italic;background:transparent;border:1px solid #c8a96633;color:#c8a96688;padding:14px 42px;cursor:pointer;letter-spacing:5px;margin-top:34px;animation:fUp 1s ease 1.5s both;transition:all 0.5s}
+#eb:hover{background:#c8a9660a;border-color:#c8a966;color:#c8a966;box-shadow:0 0 40px #c8a96622}
+
+#wrap{position:relative;width:100%;height:100vh;background:#000;display:none}
 #c{width:100%;height:100%;display:block;cursor:none}
+#hud{position:absolute;inset:0;pointer-events:none;z-index:10;font-family:'Share Tech Mono',monospace}
+#htl{position:absolute;top:20px;left:20px}
+.hn{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#c8a966;letter-spacing:4px;text-shadow:0 0 18px #c8a96644}
+.hs{font-size:7px;color:#c8a96622;letter-spacing:3px;margin-top:3px}
+#htr{position:absolute;top:20px;right:20px;text-align:right;font-size:8px;color:#c8a96622;line-height:2.4;letter-spacing:1px}
+#zn{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;font-style:italic;color:#c8a966;letter-spacing:3px;margin-bottom:3px;transition:all 0.6s;text-shadow:0 0 12px #c8a96633}
+#xh{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+#xh::before,#xh::after{content:'';position:absolute;background:#c8a96644}
+#xh::before{width:1px;height:12px;left:0;top:-6px}
+#xh::after{width:12px;height:1px;left:-6px;top:0}
+#toast{position:absolute;bottom:90px;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:12px;font-weight:300;font-style:italic;letter-spacing:4px;padding:7px 20px;border:1px solid;border-radius:1px;display:none;background:rgba(5,4,2,0.92);pointer-events:none;animation:tP 2s infinite}
+@keyframes tP{0%,100%{opacity:1}50%{opacity:0.45}}
+#hint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-size:7px;color:#c8a96618;letter-spacing:2px;text-align:center;line-height:2;pointer-events:none}
+#scan{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.02) 3px,rgba(0,0,0,0.02) 6px)}
 
-/* ─── PASSWORD ─── */
-#password-screen{
-  position:absolute;inset:0;background:#000;z-index:200;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  font-family:'Share Tech Mono',monospace;
-}
-.pw-tag{font-size:9px;color:#00f5ff44;letter-spacing:6px;margin-bottom:30px;animation:fadeUp 1s ease 0.3s both}
-.pw-title{font-family:'Orbitron',monospace;font-size:13px;font-weight:900;color:#00f5ff;letter-spacing:6px;margin-bottom:6px;text-shadow:0 0 20px #00f5ff66;animation:fadeUp 1s ease 0.5s both}
-.pw-sub{font-size:9px;color:#00f5ff33;letter-spacing:3px;margin-bottom:40px;animation:fadeUp 1s ease 0.7s both}
-.pw-box{
-  display:flex;flex-direction:column;align-items:center;gap:14px;
-  animation:fadeUp 1s ease 0.9s both;
-}
-#pw-input{
-  background:transparent;border:none;border-bottom:1px solid #00f5ff44;
-  color:#00f5ff;font-family:'Orbitron',monospace;font-size:22px;font-weight:700;
-  letter-spacing:10px;text-align:center;outline:none;width:220px;padding:10px 0;
-  caret-color:#00f5ff;
-}
-#pw-input::placeholder{color:#00f5ff22;font-size:14px;letter-spacing:4px}
-#pw-input:focus{border-bottom-color:#00f5ff88;}
-#pw-btn{
-  font-family:'Orbitron',monospace;font-size:9px;font-weight:700;
-  background:transparent;border:1px solid #00f5ff33;color:#00f5ff66;
-  padding:10px 30px;cursor:pointer;letter-spacing:4px;margin-top:6px;
-  transition:all 0.3s;
-}
-#pw-btn:hover{border-color:#00f5ff;color:#00f5ff;background:#00f5ff0a;box-shadow:0 0 20px #00f5ff22}
-#pw-error{font-size:9px;color:#ff2d78;letter-spacing:3px;height:16px;margin-top:4px;transition:opacity 0.3s;opacity:0}
-#pw-error.show{opacity:1}
-.pw-hint{font-size:8px;color:#00f5ff22;letter-spacing:2px;margin-top:40px;animation:fadeUp 1s ease 1.2s both}
+#abt{position:absolute;bottom:20px;right:20px;z-index:15;font-family:'Share Tech Mono',monospace;font-size:7px;background:rgba(200,169,102,0.04);border:1px solid #c8a96622;color:#c8a96644;padding:9px 16px;cursor:pointer;letter-spacing:3px;transition:all 0.3s;pointer-events:all;display:none}
+#abt:hover{background:rgba(200,169,102,0.1);border-color:#c8a96655;color:#c8a96688}
 
-/* ─── INTRO ─── */
-#intro{
-  position:absolute;inset:0;background:#000;z-index:100;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  transition:opacity 1.8s ease;
-}
-#intro.fade{opacity:0;pointer-events:none;z-index:-1}
-.intro-tag{font-size:10px;color:#00f5ff66;letter-spacing:8px;margin-bottom:20px;animation:fadeUp 1s ease 0.5s both}
-.intro-name{
-  font-family:'Orbitron',monospace;font-size:clamp(36px,8vw,72px);
-  font-weight:900;color:#00f5ff;letter-spacing:8px;
-  text-shadow:0 0 80px #00f5ff88,0 0 20px #00f5ff;
-  animation:fadeUp 1s ease 0.8s both;text-align:center;line-height:1.1;
-}
-.intro-name span{color:#fff;text-shadow:0 0 40px #ffffff44}
-.intro-sub{font-size:11px;color:#ffffff44;letter-spacing:5px;margin-top:16px;animation:fadeUp 1s ease 1.1s both;text-align:center}
-.intro-line{width:80px;height:1px;background:#00f5ff33;margin:30px auto;animation:fadeUp 1s ease 1.3s both}
-.intro-btn{
-  font-family:'Orbitron',monospace;font-size:11px;font-weight:700;
-  background:transparent;border:1px solid #00f5ff55;color:#00f5ff;
-  padding:14px 40px;cursor:pointer;letter-spacing:5px;
-  animation:fadeUp 1s ease 1.6s both;transition:all 0.4s;
-}
-.intro-btn:hover{background:#00f5ff18;border-color:#00f5ff;box-shadow:0 0 40px #00f5ff44;letter-spacing:6px}
-.intro-scroll{position:absolute;bottom:24px;font-size:9px;color:#00f5ff33;letter-spacing:3px;animation:fadeUp 1s ease 2s both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.room{position:absolute;inset:0;z-index:50;display:none;flex-direction:column;pointer-events:all;overflow:hidden}
+.room.open{display:flex}
+.rbg{position:absolute;inset:0}
+.rc{position:relative;z-index:1;display:flex;flex-direction:column;height:100%}
+.rh{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid;flex-shrink:0;backdrop-filter:blur(16px)}
+.rt{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;font-style:italic;letter-spacing:4px}
+.rx{font-family:'Share Tech Mono',monospace;font-size:7px;background:none;border:1px solid;padding:7px 14px;cursor:pointer;letter-spacing:3px;transition:all 0.3s}
+.rx:hover{background:rgba(255,255,255,0.07)}
+.rb{flex:1;padding:24px 28px;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}
+.rb.one{grid-template-columns:1fr}
+.rb::-webkit-scrollbar{width:1px}
+.rb::-webkit-scrollbar-thumb{background:rgba(200,169,102,0.15);border-radius:1px}
+.sw{grid-column:1/-1}
+.sc{padding:20px;border-radius:1px;border-left:2px solid;background:rgba(0,0,0,0.42);backdrop-filter:blur(14px)}
+.sc:hover{background:rgba(0,0,0,0.58)}
+.sd{font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:4px;margin-bottom:9px;opacity:0.45}
+.st{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;letter-spacing:2px;margin-bottom:11px;line-height:1.3}
+.sb2{font-family:'Share Tech Mono',monospace;font-size:10px;line-height:2;opacity:0.62}
+.sn{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;margin:10px 0;display:block;letter-spacing:4px}
+.sq{border-left:1px solid;padding:13px 16px;margin:12px 0;font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;line-height:1.9;font-weight:300;opacity:0.8}
+.sqa{font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:3px;margin-top:9px;opacity:0.35}
+.stg{margin-top:12px;display:flex;flex-wrap:wrap;gap:5px}
+.stg span{font-family:'Share Tech Mono',monospace;font-size:7px;border:1px solid;padding:2px 8px;border-radius:1px;letter-spacing:1px;opacity:0.5}
+.phf{grid-column:1/-1;display:flex;gap:18px;align-items:center;padding:18px;border:1px solid;border-radius:1px;background:rgba(0,0,0,0.38)}
+.phb{width:76px;height:76px;border:1px solid;border-radius:1px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:6px;text-align:center;letter-spacing:1px;opacity:0.35}
+.phc{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:300;font-style:italic;line-height:1.8;margin-bottom:5px}
+.phd{font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:3px;opacity:0.4}
+.cbox{grid-column:1/-1;border:1px solid;border-radius:1px;padding:14px;background:rgba(0,0,0,0.48);position:relative}
+.clb{font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:3px;margin-bottom:10px;opacity:0.45}
+#tc{width:100%;height:80px;display:block}
+.clv{position:absolute;top:12px;right:14px;font-family:'Orbitron',monospace;font-size:10px;font-weight:700}
+.srow{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.svb{border:1px solid;border-radius:1px;padding:11px;text-align:center;background:rgba(0,0,0,0.32)}
+.svv{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;letter-spacing:2px}
+.svl{font-family:'Share Tech Mono',monospace;font-size:6px;letter-spacing:2px;margin-top:4px;opacity:0.4}
 
-/* ─── HUD ─── */
-#hud{position:absolute;inset:0;pointer-events:none;z-index:10}
-#hud-tl{position:absolute;top:20px;left:20px}
-.hud-name{font-family:'Orbitron',monospace;font-size:13px;font-weight:900;color:#00f5ff;letter-spacing:4px;text-shadow:0 0 20px #00f5ff88}
-.hud-sub{font-size:8px;color:#00f5ff44;letter-spacing:3px;margin-top:4px}
-#hud-tr{position:absolute;top:20px;right:20px;text-align:right;font-size:9px;color:#00f5ff44;line-height:2.2;letter-spacing:1px}
-#zone-name{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:#00f5ff;letter-spacing:3px;margin-bottom:4px;text-shadow:0 0 12px #00f5ff;transition:color 0.5s,text-shadow 0.5s}
-#xhair{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:20px;height:20px;pointer-events:none}
-#xhair::before,#xhair::after{content:'';position:absolute;background:#00f5ffaa}
-#xhair::before{width:1px;height:100%;left:50%;transform:translateX(-50%)}
-#xhair::after{width:16px;height:1px;top:50%;left:50%;transform:translate(-50%,-50%)}
-#toast{
-  position:absolute;bottom:100px;left:50%;transform:translateX(-50%);
-  font-family:'Orbitron',monospace;font-size:10px;font-weight:700;letter-spacing:3px;
-  padding:9px 22px;border:1px solid;border-radius:2px;display:none;
-  background:rgba(0,0,0,0.8);backdrop-filter:blur(4px);
-  animation:toastPulse 1.5s infinite;pointer-events:none;
-}
-@keyframes toastPulse{0%,100%{opacity:1}50%{opacity:0.5}}
-#hint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:9px;color:#00f5ff33;letter-spacing:2px;text-align:center;line-height:2;pointer-events:none}
-#scan{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);z-index:9}
-
-/* ─── PANELS ─── */
-.dpanel{position:absolute;inset:0;z-index:50;display:none;flex-direction:column;pointer-events:all;overflow:hidden}
-.dpanel.open{display:flex}
-.dp-bg{position:absolute;inset:0}
-.dp-content{position:relative;z-index:1;display:flex;flex-direction:column;height:100%}
-.dp-header{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;flex-shrink:0;backdrop-filter:blur(10px)}
-.dp-title{font-family:'Orbitron',monospace;font-size:14px;font-weight:900;letter-spacing:4px}
-.dp-close{font-family:'Orbitron',monospace;font-size:9px;background:none;border:1px solid;padding:7px 16px;cursor:pointer;letter-spacing:2px;transition:all 0.2s}
-.dp-close:hover{background:rgba(255,255,255,0.1)}
-.dp-body{flex:1;padding:22px 28px;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:start}
-.dp-body.single{grid-template-columns:1fr}
-.dp-body::-webkit-scrollbar{width:2px}
-.dp-body::-webkit-scrollbar-thumb{border-radius:2px;background:rgba(255,255,255,0.2)}
-
-.feat-card{border:1px solid;border-radius:4px;padding:18px;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);transition:border-color 0.3s}
-.feat-card:hover{background:rgba(0,0,0,0.65)}
-.feat-card-big{grid-column:1/-1}
-.fc-tag{font-size:8px;letter-spacing:3px;margin-bottom:8px;font-family:'Orbitron',monospace;opacity:0.55}
-.fc-title{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:10px;line-height:1.4}
-.fc-body{font-size:11px;line-height:1.9;opacity:0.72}
-.fc-tags{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
-.ftag{font-size:8px;border:1px solid;padding:2px 8px;border-radius:2px;letter-spacing:1px;opacity:0.65}
-.stat-row{display:flex;gap:10px;margin:14px 0}
-.stat{flex:1;border:1px solid;border-radius:3px;padding:12px;text-align:center;background:rgba(0,0,0,0.4)}
-.stat-n{font-family:'Orbitron',monospace;font-size:20px;font-weight:900}
-.stat-l{font-size:8px;letter-spacing:2px;margin-top:3px;opacity:0.55}
-.tl-item{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
-.tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;border:1px solid}
-.tl-year{font-family:'Orbitron',monospace;font-size:8px;font-weight:700;letter-spacing:2px;margin-bottom:5px;opacity:0.65}
-.tl-desc{font-size:11px;line-height:1.8;opacity:0.65}
-.quote-block{border-left:2px solid;padding:14px 18px;margin:14px 0;font-size:12px;line-height:2;font-style:italic}
-.quote-attr{font-size:8px;letter-spacing:3px;margin-top:10px;opacity:0.45;font-family:'Orbitron',monospace}
-.sbar{margin-bottom:10px;border:1px solid rgba(255,255,255,0.06);border-radius:3px;padding:11px;background:rgba(0,0,0,0.4)}
-.sn{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;margin-bottom:7px;display:flex;justify-content:space-between}
-.st{height:3px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
-.sf{height:100%;border-radius:2px;transition:width 1.5s ease}
-.ach-card{border:1px solid;border-radius:4px;padding:16px;margin-bottom:12px;background:rgba(0,0,0,0.4);display:flex;gap:14px;align-items:flex-start}
-.ach-icon{font-family:'Orbitron',monospace;font-size:10px;font-weight:900;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid}
-.ticker{display:flex;gap:20px;padding:10px 0;border-bottom:1px solid;margin-bottom:14px;overflow:hidden}
-.tick{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:1px}
-
-/* ─── AI AGENT ─── */
-#agent-btn{
-  position:absolute;bottom:20px;right:20px;z-index:15;
-  font-family:'Orbitron',monospace;font-size:9px;font-weight:700;
-  background:#00f5ff11;border:1px solid #00f5ff44;color:#00f5ff;
-  padding:10px 18px;cursor:pointer;letter-spacing:2px;border-radius:2px;
-  transition:all 0.3s;pointer-events:all;display:none;
-}
-#agent-btn:hover{background:#00f5ff22;border-color:#00f5ff;box-shadow:0 0 20px #00f5ff33}
-#agent-panel{
-  position:absolute;inset:0;z-index:60;
-  background:rgba(3,6,15,0.97);display:none;flex-direction:column;pointer-events:all;
-}
-#agent-panel.open{display:flex}
-#agent-header{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid #00f5ff18;flex-shrink:0}
-#agent-avatar{width:40px;height:40px;border-radius:50%;background:#00f5ff11;border:2px solid #00f5ff;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;position:relative}
-#agent-avatar::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid #00f5ff33;animation:avatarPulse 2s infinite}
-@keyframes avatarPulse{0%,100%{transform:scale(1);opacity:0.5}50%{transform:scale(1.15);opacity:0}}
-.av-i{font-family:'Orbitron',monospace;font-size:13px;font-weight:900;color:#00f5ff}
-#agent-name{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:#00f5ff;letter-spacing:2px}
-#agent-status{font-size:9px;color:#39ff14;letter-spacing:2px;margin-top:2px}
-#agent-status::before{content:'● ';animation:statusBlink 1.5s infinite}
-@keyframes statusBlink{0%,100%{opacity:1}50%{opacity:0.3}}
-#agent-close-btn{font-family:'Orbitron',monospace;font-size:9px;background:none;border:1px solid #00f5ff33;color:#00f5ff66;padding:6px 14px;cursor:pointer;letter-spacing:2px;border-radius:2px}
-#agent-close-btn:hover{border-color:#00f5ff55;color:#00f5ff}
-#chat-messages{flex:1;overflow-y:auto;padding:16px 22px;display:flex;flex-direction:column;gap:12px}
-#chat-messages::-webkit-scrollbar{width:2px}
-#chat-messages::-webkit-scrollbar-thumb{background:#00f5ff22;border-radius:2px}
-.msg{display:flex;gap:10px;max-width:88%}
-.msg.user{align-self:flex-end;flex-direction:row-reverse}
-.msg-bubble{padding:10px 14px;border-radius:4px;font-size:11px;line-height:1.8;letter-spacing:0.3px}
-.msg.bot .msg-bubble{background:#00f5ff0a;border:1px solid #00f5ff18;color:#00f5ffcc}
-.msg.user .msg-bubble{background:#39ff140a;border:1px solid #39ff1418;color:#39ff14cc}
-.msg-icon{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-family:'Orbitron',monospace;font-weight:700;margin-top:2px}
-.msg.bot .msg-icon{background:#00f5ff0a;border:1px solid #00f5ff33;color:#00f5ff}
-.msg.user .msg-icon{background:#39ff140a;border:1px solid #39ff1433;color:#39ff14}
-.typing{display:flex;gap:4px;align-items:center;padding:8px 12px}
-.typing span{width:5px;height:5px;border-radius:50%;background:#00f5ff44;animation:typeDot 1.2s infinite}
-.typing span:nth-child(2){animation-delay:0.2s}
-.typing span:nth-child(3){animation-delay:0.4s}
-@keyframes typeDot{0%,100%{transform:translateY(0);background:#00f5ff44}50%{transform:translateY(-5px);background:#00f5ff}}
-#quick-btns{display:flex;gap:7px;padding:0 22px 10px;flex-wrap:wrap;flex-shrink:0}
-.qbtn{font-family:'Share Tech Mono',monospace;font-size:9px;background:transparent;border:1px solid #00f5ff18;color:#00f5ff55;padding:5px 10px;cursor:pointer;border-radius:2px;letter-spacing:0.5px;white-space:nowrap;transition:all 0.2s}
-.qbtn:hover{border-color:#00f5ff44;color:#00f5ff88;background:#00f5ff08}
-#chat-input-area{padding:14px 22px;border-top:1px solid #00f5ff18;display:flex;gap:10px;flex-shrink:0}
-#chat-input{flex:1;background:#00f5ff08;border:1px solid #00f5ff22;color:#00f5ffcc;font-family:'Share Tech Mono',monospace;font-size:11px;padding:10px 14px;outline:none;border-radius:2px;letter-spacing:0.5px}
-#chat-input:focus{border-color:#00f5ff44;background:#00f5ff0f}
-#chat-input::placeholder{color:#00f5ff22}
-#chat-send{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;background:#00f5ff11;border:1px solid #00f5ff33;color:#00f5ff;padding:10px 18px;cursor:pointer;letter-spacing:2px;border-radius:2px;transition:all 0.2s}
-#chat-send:hover{background:#00f5ff22;border-color:#00f5ff}
-#chat-send:disabled{opacity:0.3;cursor:not-allowed}
+#ar{position:absolute;inset:0;z-index:60;background:rgba(5,4,2,0.97);display:none;flex-direction:column;pointer-events:all}
+#ar.open{display:flex}
+#arh{display:flex;align-items:center;justify-content:space-between;padding:16px 26px;border-bottom:1px solid #c8a96612;flex-shrink:0}
+#arav{width:40px;height:40px;border-radius:50%;background:#c8a9660a;border:1px solid #c8a96633;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;font-style:italic;color:#c8a966}
+#arname{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;font-style:italic;color:#c8a966;letter-spacing:3px}
+#arst{font-family:'Share Tech Mono',monospace;font-size:7px;color:#6a8a5588;letter-spacing:2px;margin-top:2px}
+#arcl{font-family:'Share Tech Mono',monospace;font-size:7px;background:none;border:1px solid #c8a96618;color:#c8a96633;padding:7px 14px;cursor:pointer;letter-spacing:2px}
+#arcl:hover{border-color:#c8a96633;color:#c8a96666}
+#cms{flex:1;overflow-y:auto;padding:18px 26px;display:flex;flex-direction:column;gap:12px}
+#cms::-webkit-scrollbar{width:1px}
+#cms::-webkit-scrollbar-thumb{background:#c8a96618}
+.mg{display:flex;gap:11px;max-width:86%}
+.mg.u{align-self:flex-end;flex-direction:row-reverse}
+.mb{padding:11px 15px;border-radius:1px;font-family:'Share Tech Mono',monospace;font-size:10px;line-height:1.85}
+.mg.b .mb{background:#c8a9660a;border:1px solid #c8a96614;color:#c8a966aa}
+.mg.u .mb{background:#39ff140a;border:1px solid #39ff1414;color:#39ff14aa}
+.mi{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.mg.b .mi{background:#c8a9660a;border:1px solid #c8a96628;font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;font-weight:600;color:#c8a966}
+.mg.u .mi{background:#39ff140a;border:1px solid #39ff1428;font-family:'Share Tech Mono',monospace;font-size:7px;color:#39ff14}
+.typ{display:flex;gap:5px;align-items:center;padding:9px 13px}
+.typ span{width:4px;height:4px;border-radius:50%;background:#c8a96622;animation:td 1.2s infinite}
+.typ span:nth-child(2){animation-delay:0.2s}
+.typ span:nth-child(3){animation-delay:0.4s}
+@keyframes td{0%,100%{transform:translateY(0);background:#c8a96622}50%{transform:translateY(-4px);background:#c8a966}}
+#qb{display:flex;gap:6px;padding:0 26px 10px;flex-wrap:wrap;flex-shrink:0}
+.qbtn{font-family:'Share Tech Mono',monospace;font-size:7px;background:transparent;border:1px solid #c8a96614;color:#c8a96633;padding:5px 9px;cursor:pointer;letter-spacing:1px;white-space:nowrap;transition:all 0.2s}
+.qbtn:hover{border-color:#c8a96630;color:#c8a96666;background:#c8a9660a}
+#cia{padding:14px 26px;border-top:1px solid #c8a96610;display:flex;gap:10px;flex-shrink:0}
+#ci{flex:1;background:#c8a9660a;border:1px solid #c8a96618;color:#c8a966bb;font-family:'Share Tech Mono',monospace;font-size:10px;padding:10px 13px;outline:none;border-radius:1px}
+#ci:focus{border-color:#c8a96633}
+#ci::placeholder{color:#c8a96618}
+#cs{font-family:'Share Tech Mono',monospace;font-size:7px;background:#c8a9660a;border:1px solid #c8a96628;color:#c8a966;padding:10px 16px;cursor:pointer;letter-spacing:2px}
+#cs:hover{background:#c8a96618}
+#cs:disabled{opacity:0.3;cursor:not-allowed}
 </style>
 </head>
 <body>
+
+<div id="pw-screen">
+  <div class="pw-glow"></div>
+  <div class="pw-c">
+    <div class="pw-ey">// private access //</div>
+    <div class="pw-nm">Ahmad<em>Mido Hari</em></div>
+    <div class="pw-div"></div>
+    <div class="pw-sb">sidon · lebanon · aub<br>mechanical engineer · builder</div>
+    <input id="pw-i" type="password" maxlength="12" placeholder="access code" autofocus/>
+    <div id="pw-er">incorrect</div>
+    <button id="pw-b">enter</button>
+  </div>
+  <div class="pw-ft">// authorized access only //</div>
+</div>
+
+<div id="intro">
+  <div class="i-loc">// sidon · lebanon //</div>
+  <div class="i-nm">Ahmad<em>Mido Hari</em></div>
+  <div class="i-ln"></div>
+  <div class="i-sb">mechanical engineer · builder · inventor in progress<br>second year · aub beirut · born in sidon</div>
+  <button id="eb">walk into my world</button>
+</div>
+
 <div id="wrap">
   <canvas id="c"></canvas>
-
-  <!-- PASSWORD -->
-  <div id="password-screen">
-    <div class="pw-tag">// RESTRICTED ACCESS //</div>
-    <div class="pw-title">AHMAD'S WORLD</div>
-    <div class="pw-sub">ENTER ACCESS CODE TO CONTINUE</div>
-    <div class="pw-box">
-      <input id="pw-input" type="password" maxlength="12" placeholder="· · · · · · · ·" autofocus />
-      <div id="pw-error">// ACCESS DENIED //</div>
-      <button id="pw-btn" onclick="checkPassword()">[ AUTHENTICATE ]</button>
-    </div>
-    <div class="pw-hint">// AUTHORIZED PERSONNEL ONLY //</div>
-  </div>
-
-  <!-- INTRO -->
-  <div id="intro">
-    <div class="intro-tag">// ENTERING AHMAD'S WORLD //</div>
-    <div class="intro-name">MIDO<br><span>HARI</span></div>
-    <div class="intro-sub">MECHANICAL ENGINEER &nbsp;·&nbsp; BUILDER &nbsp;·&nbsp; AUB BEIRUT</div>
-    <div class="intro-line"></div>
-    <button class="intro-btn" id="enter-btn">ENTER THE CITY</button>
-    <div class="intro-scroll">// WASD TO MOVE · MOUSE TO LOOK · WALK INTO BUILDINGS //</div>
-  </div>
-
-  <!-- HUD -->
   <div id="hud">
-    <div id="hud-tl">
-      <div class="hud-name">AHMAD'S WORLD</div>
-      <div class="hud-sub">// MIDO HARI · AUB · 2025</div>
-    </div>
-    <div id="hud-tr">
-      <div id="zone-name">MAIN STREET</div>
-      WASD · MOVE &nbsp;|&nbsp; MOUSE · LOOK<br>
-      WALK INTO BUILDINGS &nbsp;|&nbsp; T · TALK TO AHMAD
-    </div>
-    <div id="xhair"></div>
+    <div id="htl"><div class="hn">Mido Hari</div><div class="hs">// sidon · lebanon · 2025</div></div>
+    <div id="htr"><div id="zn">The Mediterranean</div>wasd · move &nbsp;|&nbsp; mouse · look<br>walk close · enter &nbsp;|&nbsp; t · talk</div>
+    <div id="xh"></div>
     <div id="toast"></div>
-    <div id="hint">CLICK TO LOCK MOUSE &nbsp;·&nbsp; ESC TO EXIT PANEL</div>
+    <div id="hint">click to lock mouse · wasd to walk · approach buildings · t to talk to ahmad</div>
   </div>
   <div id="scan"></div>
-  <button id="agent-btn" onclick="openAgent()">[ T — TALK TO AHMAD.AI ]</button>
+  <button id="abt" onclick="openAg()">[ t — talk to ahmad ]</button>
 
-  <!-- PROJECTS PANEL -->
-  <div id="dp-projects" class="dpanel">
-    <div class="dp-bg" style="background:linear-gradient(135deg,#000810 0%,#001a2e 60%,#000810 100%)"></div>
-    <div class="dp-content">
-      <div class="dp-header" style="border-bottom:1px solid #00f5ff18">
-        <div class="dp-title" style="color:#00f5ff">// ENG.LAB — PROJECTS //</div>
-        <button class="dp-close" style="border-color:#00f5ff33;color:#00f5ff66" onclick="closePanel()">[ EXIT ]</button>
+  <!-- HHS -->
+  <div id="room-hhs" class="room">
+    <div class="rbg" style="background:linear-gradient(150deg,#0f0c02 0%,#181205 35%,#0c0902 100%)"></div>
+    <div class="rc">
+      <div class="rh" style="border-color:#c8a96614">
+        <div class="rt" style="color:#c8a966">HHS — A Whole Life</div>
+        <button class="rx" style="border-color:#c8a96628;color:#c8a96655" onclick="closeRoom()">leave</button>
       </div>
-      <div class="dp-body">
-        <div class="feat-card feat-card-big" style="border-color:#00f5ff33">
-          <div class="fc-tag" style="color:#00f5ff">FLAGSHIP · 2025</div>
-          <div class="fc-title" style="color:#00f5ff">THIS 3D WORLD — CYBERPUNK PORTFOLIO</div>
-          <div class="fc-body" style="color:#00f5ffbb">You're standing inside my most ambitious project. A fully walkable 3D cyberpunk city built because I refused to have a LinkedIn. First-person navigation, 5 neon districts, cinematic intro, AI agent that speaks as me. Three.js, custom rain, real-time fog, parked cars, lampposts. Built to show how I think, not just what I've done.</div>
-          <div class="fc-tags">
-            <span class="ftag" style="border-color:#00f5ff33;color:#00f5ff">THREE.JS</span>
-            <span class="ftag" style="border-color:#00f5ff33;color:#00f5ff">JAVASCRIPT</span>
-            <span class="ftag" style="border-color:#39ff1433;color:#39ff14">AI AGENT</span>
-            <span class="ftag" style="border-color:#00f5ff33;color:#00f5ff">WEBGL</span>
-          </div>
+      <div class="rb">
+        <div class="sc sw" style="border-color:#c8a966;border-left-color:#c8a966">
+          <div class="sd" style="color:#c8a966">SIDON, LEBANON · PRESCHOOL → GRADE 12</div>
+          <div class="st" style="color:#c8a966">One school. My whole formation.</div>
+          <div class="sb2" style="color:#c8a966aa">From preschool to graduation, every year of my formation happened near the bus stop in Sidon — a few minutes from the sea. On clear days you could see the Mediterranean from the windows. I didn't know I was becoming an engineer. I just knew I hated memorizing things I didn't understand, and loved building things nobody asked me to build.</div>
         </div>
-        <div class="feat-card" style="border-color:#00f5ff18">
-          <div class="fc-tag" style="color:#00f5ff">C++ · OPENGL · 2024</div>
-          <div class="fc-title" style="color:#00f5ff">PNEUMATIC TRANSPORT SIMULATOR</div>
-          <div class="fc-body" style="color:#00f5ffbb">Real-time 3D physics simulation. Darcy-Weisbach fluid dynamics, capsule physics engine, Dijkstra route planning, live HUD. Built with zero prior software development experience — just figured it out.</div>
-          <div class="fc-tags">
-            <span class="ftag" style="border-color:#00f5ff33;color:#00f5ff">C++</span>
-            <span class="ftag" style="border-color:#00f5ff33;color:#00f5ff">OPENGL</span>
-            <span class="ftag" style="border-color:#39ff1433;color:#39ff14">PHYSICS ENGINE</span>
-          </div>
+        <div class="sc" style="border-color:#ef9f2718;border-left-color:#ef9f27">
+          <div class="sd" style="color:#ef9f27">GRADE 10 — EVERYTHING STARTS</div>
+          <div class="st" style="color:#ef9f27">The year I became myself.</div>
+          <div class="sb2" style="color:#ef9f27aa">20-meter open water diving license. Chess getting serious. 6-month crypto course. First real money on the line. Four things at once, all self-initiated. Nobody asked me to do any of it.</div>
+          <div class="stg"><span style="border-color:#ef9f2728;color:#ef9f27">PADI DIVING</span><span style="border-color:#ef9f2728;color:#ef9f27">CHESS</span><span style="border-color:#ef9f2728;color:#ef9f27">FIRST TRADE</span></div>
         </div>
-        <div class="feat-card" style="border-color:#00f5ff18">
-          <div class="fc-tag" style="color:#00f5ff">PYTHON · SOLIDWORKS · 2024</div>
-          <div class="fc-title" style="color:#00f5ff">FOUR-BAR LINKAGE SYNTHESIS</div>
-          <div class="fc-body" style="color:#00f5ffbb">Graphical synthesis of crank-rocker mechanism with 60° swing. Full animated Python simulation pipeline with SolidWorks-ready output. Went far past the assignment requirements.</div>
-          <div class="fc-tags">
-            <span class="ftag" style="border-color:#00f5ff33;color:#00f5ff">PYTHON</span>
-            <span class="ftag" style="border-color:#00f5ff33;color:#00f5ff">SOLIDWORKS</span>
-            <span class="ftag" style="border-color:#39ff1433;color:#39ff14">KINEMATICS</span>
-          </div>
+        <div class="sc" style="border-color:#4a9eff18;border-left-color:#4a9eff">
+          <div class="sd" style="color:#4a9eff">GRADE 11 — CAPTAIN</div>
+          <div class="st" style="color:#4a9eff">Basketball team captain.</div>
+          <div class="sb2" style="color:#4a9effaa">When the game is close and your team looks at you — that's leadership. Not a title. A moment. Grade 11. I was that person. I've carried it into everything since.</div>
         </div>
-        <div class="feat-card" style="border-color:#00f5ff18">
-          <div class="fc-tag" style="color:#00f5ff">PYTHON · SCIPY · 2024</div>
-          <div class="fc-title" style="color:#00f5ff">CHARPY / IZOD IMPACT ANALYSIS</div>
-          <div class="fc-body" style="color:#00f5ffbb">DBTT sigmoid fitting across 4 steel alloys. Full Python data analysis pipeline and LaTeX academic report. Analysis quality that professors don't expect from a second-year.</div>
-          <div class="fc-tags">
-            <span class="ftag" style="border-color:#00f5ff33;color:#00f5ff">SCIPY</span>
-            <span class="ftag" style="border-color:#00f5ff33;color:#00f5ff">LATEX</span>
-            <span class="ftag" style="border-color:#ff2d7833;color:#ff2d78">MATERIALS</span>
-          </div>
+        <div class="sc" style="border-color:#bf5af218;border-left-color:#bf5af2">
+          <div class="sd" style="color:#bf5af2">GRADE 11–12 · IB DIPLOMA</div>
+          <div class="st" style="color:#bf5af2">High Honours.</div>
+          <div class="sb2" style="color:#bf5af2aa">IB didn't teach me facts. It taught me to research beyond the question — to go further than what's asked. That instinct is worth more than the diploma. I use it every day.</div>
+        </div>
+        <div class="sq sw" style="border-color:#c8a96628;color:#c8a966aa">
+          "I hate exams. I hate assignments. My real intuition is in building and creating. My younger self would look at me now and say — that's Ahmad. He's an inventor."
+          <div class="sqa" style="color:#c8a96633">— AHMAD MIDO HARI</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- LIFE PANEL -->
-  <div id="dp-life" class="dpanel">
-    <div class="dp-bg" style="background:linear-gradient(135deg,#140008 0%,#250012 60%,#140008 100%)"></div>
-    <div class="dp-content">
-      <div class="dp-header" style="border-bottom:1px solid #ff2d7818">
-        <div class="dp-title" style="color:#ff2d78">// LIFE ARCHIVE //</div>
-        <button class="dp-close" style="border-color:#ff2d7833;color:#ff2d7866" onclick="closePanel()">[ EXIT ]</button>
+  <!-- SEA -->
+  <div id="room-sea" class="room">
+    <div class="rbg" style="background:linear-gradient(150deg,#020810 0%,#030e1c 35%,#020608 100%)"></div>
+    <div class="rc">
+      <div class="rh" style="border-color:#4a9eff12">
+        <div class="rt" style="color:#4a9eff">The Mediterranean</div>
+        <button class="rx" style="border-color:#4a9eff28;color:#4a9eff55" onclick="closeRoom()">leave</button>
       </div>
-      <div class="dp-body single" style="color:#ff2d78cc">
-        <div class="quote-block" style="border-color:#ff2d7844;color:#ff2d78bb">
-          When I was young I made a promise to myself — I would become an inventor. Engineering felt right. It still does. Every year since has been about keeping that promise.
-          <div class="quote-attr" style="color:#ff2d7844">— AHMAD MIDO HARI</div>
+      <div class="rb one">
+        <div class="sc" style="border-color:#4a9eff;border-left-color:#4a9eff">
+          <div class="sd" style="color:#4a9eff">SIDON · THE SEA WAS ALWAYS THERE</div>
+          <div class="st" style="color:#4a9eff">Visible from school. Visible from home.</div>
+          <div class="sb2" style="color:#4a9effaa">Growing up in Sidon with the Mediterranean visible from your school window gives you something hard to explain. A sense of scale. A daily reminder that the world is bigger than whatever problem you're sitting with. The sea was always there. It still is.</div>
         </div>
-        <div class="tl-item">
-          <div class="tl-dot" style="background:#ff2d78;border-color:#ff2d78"></div>
-          <div>
-            <div class="tl-year" style="color:#ff2d78">2024 — YEAR 2 AT AUB</div>
-            <div class="tl-desc" style="color:#ff2d78aa">Deep in Mechanics of Machines, materials labs, LabVIEW. Building simulators nobody asked for. Refused to make a LinkedIn. Built a city instead.</div>
-          </div>
+        <div class="sc" style="border-color:#4a9eff18;border-left-color:#4a9eff">
+          <div class="sd" style="color:#4a9eff">GRADE 10 · PADI OPEN WATER · 20M</div>
+          <div class="st" style="color:#4a9eff">Twenty meters down. No noise.</div>
+          <div class="sb2" style="color:#4a9effaa">No notifications. No noise. Just pressure, light, and your own breathing. You trust your equipment completely or you don't go down. There is no debug mode at depth. Every engineer should dive once — you learn what it means for a system to have zero margin for error.</div>
         </div>
-        <div class="tl-item">
-          <div class="tl-dot" style="background:#ff2d7888;border-color:#ff2d7888"></div>
-          <div>
-            <div class="tl-year" style="color:#ff2d78">2023 — YEAR 1 AT AUB</div>
-            <div class="tl-desc" style="color:#ff2d78aa">First year. Learning to think like an engineer. Harder than expected. More interesting than expected.</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot" style="background:#ff2d7866;border-color:#ff2d7866"></div>
-          <div>
-            <div class="tl-year" style="color:#ff2d78">IB — HIGH HONOURS</div>
-            <div class="tl-desc" style="color:#ff2d78aa">International Baccalaureate with High Honours. The IB gave me the research instinct — the habit of going deeper than required. Chose engineering. Never looked back.</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot" style="background:#ff2d7844;border-color:#ff2d7844"></div>
-          <div>
-            <div class="tl-year" style="color:#ff2d78">GRADE 10 — THE MARKET BEGINS</div>
-            <div class="tl-desc" style="color:#ff2d78aa">Took a 6-month crypto trading course. Started with real money. 700+ hours of self-directed research since. The market taught patience the hard way.</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot" style="background:#ff2d7822;border-color:#ff2d7822"></div>
-          <div>
-            <div class="tl-year" style="color:#ff2d78">CHILDHOOD — THE PROMISE</div>
-            <div class="tl-desc" style="color:#ff2d78aa">UCMAS mental arithmetic. Chess to ~1700 ELO. Scuba diving. Hunting and camping. Basketball. A kid who made a promise to himself and meant it.</div>
-          </div>
+        <div class="sq" style="border-color:#4a9eff28;color:#4a9effaa">
+          "The sea taught me that calm is a skill, not a personality trait. You practice it until it becomes automatic. I learned that at 20 meters. I use it every day."
+          <div class="sqa" style="color:#4a9eff33">— AHMAD MIDO HARI · SIDON</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SKILLS PANEL -->
-  <div id="dp-skills" class="dpanel">
-    <div class="dp-bg" style="background:linear-gradient(135deg,#010f01 0%,#001500 60%,#010f01 100%)"></div>
-    <div class="dp-content">
-      <div class="dp-header" style="border-bottom:1px solid #39ff1418">
-        <div class="dp-title" style="color:#39ff14">// TECHCORE — SKILLS //</div>
-        <button class="dp-close" style="border-color:#39ff1433;color:#39ff1466" onclick="closePanel()">[ EXIT ]</button>
+  <!-- AUB -->
+  <div id="room-aub" class="room">
+    <div class="rbg" style="background:linear-gradient(150deg,#020c02 0%,#030f03 35%,#020802 100%)"></div>
+    <div class="rc">
+      <div class="rh" style="border-color:#39ff1412">
+        <div class="rt" style="color:#39ff14">AUB · Engineering</div>
+        <button class="rx" style="border-color:#39ff1428;color:#39ff1455" onclick="closeRoom()">leave</button>
       </div>
-      <div class="dp-body" id="skills-grid" style="color:#39ff14cc;align-content:start"></div>
+      <div class="rb">
+        <div class="sc sw" style="border-color:#39ff14;border-left-color:#39ff14">
+          <div class="sd" style="color:#39ff14">AUB BEIRUT · YEAR 2 · SPRING SEMESTER</div>
+          <div class="st" style="color:#39ff14">Mechanical Engineering. But really — building.</div>
+          <div class="sb2" style="color:#39ff14aa">Second year, spring semester. Kinematics, materials science, fluid mechanics, LabVIEW. But the real learning happens outside class. A 3D physics simulator nobody asked me to build. This world you're standing in. A linkage synthesis that went far past what was required. That's where I actually learn.</div>
+        </div>
+        <div class="sc" style="border-color:#39ff1418;border-left-color:#39ff14">
+          <div class="sd" style="color:#39ff14">C++ · OPENGL · ZERO PRIOR EXPERIENCE</div>
+          <div class="st" style="color:#39ff14">Pneumatic Transport Simulator</div>
+          <div class="sb2" style="color:#39ff14aa">Built a real-time 3D physics simulator from nothing. Darcy-Weisbach fluid dynamics, capsule physics, Dijkstra routing, live HUD. Week one I couldn't compile C++. Four weeks later the physics were running. That's what happens when you refuse to stop.</div>
+          <div class="stg"><span style="border-color:#39ff1428;color:#39ff14">C++</span><span style="border-color:#39ff1428;color:#39ff14">OPENGL</span><span style="border-color:#39ff1428;color:#39ff14">PHYSICS ENGINE</span></div>
+        </div>
+        <div class="sc" style="border-color:#39ff1418;border-left-color:#39ff14">
+          <div class="sd" style="color:#39ff14">PYTHON · SOLIDWORKS · KINEMATICS</div>
+          <div class="st" style="color:#39ff14">Four-Bar Linkage Synthesis</div>
+          <div class="sb2" style="color:#39ff14aa">Crank-rocker mechanism, 60° swing. Full animated Python pipeline, SolidWorks-ready output. The assignment asked for the math. I built the animation because I needed to see it move.</div>
+        </div>
+        <div class="sc" style="border-color:#39ff1418;border-left-color:#39ff14">
+          <div class="sd" style="color:#39ff14">THIS WORLD · THREE.JS · 2025</div>
+          <div class="st" style="color:#39ff14">Why this exists instead of a LinkedIn.</div>
+          <div class="sb2" style="color:#39ff14aa">A resume tells you what someone did. This world shows you how I think. You're walking through Sidon — my school, the sea, my life — because the only honest way to present yourself is to let someone experience your mind, not read a summary of it.</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- ACHIEVEMENTS PANEL -->
-  <div id="dp-vibe" class="dpanel">
-    <div class="dp-bg" style="background:linear-gradient(135deg,#0d0014 0%,#180020 60%,#0d0014 100%)"></div>
-    <div class="dp-content">
-      <div class="dp-header" style="border-bottom:1px solid #bf5af218">
-        <div class="dp-title" style="color:#bf5af2">// HALL OF ACHIEVEMENTS //</div>
-        <button class="dp-close" style="border-color:#bf5af233;color:#bf5af266" onclick="closePanel()">[ EXIT ]</button>
+  <!-- TRADING -->
+  <div id="room-trading" class="room">
+    <div class="rbg" style="background:linear-gradient(150deg,#0c0700 0%,#180e00 35%,#0c0700 100%)"></div>
+    <div class="rc">
+      <div class="rh" style="border-color:#ef9f2712">
+        <div class="rt" style="color:#ef9f27">Trading Floor</div>
+        <button class="rx" style="border-color:#ef9f2728;color:#ef9f2755" onclick="closeRoom()">leave</button>
       </div>
-      <div class="dp-body" style="color:#bf5af2cc;align-content:start">
-        <div class="ach-card" style="border-color:#bf5af222;grid-column:1/-1">
-          <div class="ach-icon" style="background:#bf5af211;border-color:#bf5af233;color:#bf5af2">IB</div>
+      <div class="rb">
+        <div class="phf sw" style="border-color:#ef9f2718">
+          <div class="phb" style="border-color:#ef9f2728;color:#ef9f2740">ADD<br>YOUR<br>PHOTO</div>
           <div>
-            <div style="font-family:'Orbitron',monospace;font-size:10px;font-weight:700;color:#bf5af2;letter-spacing:2px;margin-bottom:6px">IB DIPLOMA — HIGH HONOURS</div>
-            <div style="font-size:11px;line-height:1.8;color:#bf5af2aa">International Baccalaureate with High Honours. The IB gave me the research instinct — the habit of going deeper than required. Most useful skill I have.</div>
+            <div class="phc" style="color:#ef9f27aa">Black hoodie. Gaming chair. Laptop screen. The room was dark. The number on the screen said $19.27.</div>
+            <div class="phd" style="color:#ef9f2740">FEBRUARY 2022 · SIDON</div>
           </div>
         </div>
-        <div class="feat-card" style="border-color:#bf5af218">
-          <div class="fc-tag" style="color:#bf5af2">CHESS</div>
-          <div class="fc-title" style="color:#bf5af2">~1700 ELO — TOP 5%</div>
-          <div class="fc-body" style="color:#bf5af2aa">Intermediate competitive chess online. 1700 ELO places you in the top 5% of all rated players. Chess taught me patience with complex systems — exactly what engineering requires.</div>
+        <div class="sc" style="border-color:#ef9f2728;border-left-color:#ef9f27">
+          <div class="sd" style="color:#ef9f27">FEBRUARY 2022 — THE FIRST NUMBER</div>
+          <div class="st" style="color:#ef9f27">$19.27. I still remember.</div>
+          <span class="sn" style="color:#ef9f27;text-shadow:0 0 40px #ef9f2744">$19.27</span>
+          <div class="sb2" style="color:#ef9f27aa">After a 6-month trading course. After hundreds of hours of charts nobody asked me to study. Black hoodie. Gaming chair. 2am. That number appeared and I felt like I'd understood something. I hadn't yet. But the feeling kept me going through everything that came after.</div>
         </div>
-        <div class="feat-card" style="border-color:#bf5af218">
-          <div class="fc-tag" style="color:#bf5af2">CHILDHOOD</div>
-          <div class="fc-title" style="color:#bf5af2">UCMAS ARITHMETIC</div>
-          <div class="fc-body" style="color:#bf5af2aa">Abacus and mental arithmetic program from a young age. Participation, not trophies — but this is where the analytical instinct first formed. The brain learns to compute before it questions.</div>
+        <div class="sc" style="border-color:#ef9f2714;border-left-color:#ef9f27">
+          <div class="sd" style="color:#ef9f27">2022 → NOW · THE REAL EDUCATION</div>
+          <div class="st" style="color:#ef9f27">Won. Lost. Recovered. Repeated.</div>
+          <div class="sb2" style="color:#ef9f27aa">Lost real money. Recovered. Made serious profits. Lost some. Made more. Every cycle taught something no course could. Risk management isn't a concept — it's a physical feeling in your chest when a position moves against you and you have to decide.</div>
         </div>
-        <div class="feat-card" style="border-color:#bf5af218">
-          <div class="fc-tag" style="color:#bf5af2">SPORT</div>
-          <div class="fc-title" style="color:#bf5af2">DIVER · HUNTER · ATHLETE</div>
-          <div class="fc-body" style="color:#bf5af2aa">Scuba diving — calm under pressure. Hunting and camping — focus, patience with nature. Basketball — team dynamics. Swimming — discipline. All of it feeds into how I work.</div>
+        <div class="cbox" style="border-color:#ef9f2714">
+          <div class="clb" style="color:#ef9f27">live market · portfolio view</div>
+          <canvas id="tc"></canvas>
+          <div class="clv" id="cpct" style="color:#39ff14">+0.00%</div>
         </div>
-        <div class="feat-card" style="border-color:#bf5af218">
-          <div class="fc-tag" style="color:#bf5af2">THE PROMISE</div>
-          <div class="fc-title" style="color:#bf5af2">INVENTOR IN PROGRESS</div>
-          <div class="fc-body" style="color:#bf5af2aa">"I build things that don't need to exist — because that's the only way to find out if they should." Still working on the promise made as a kid. Not done yet.</div>
+        <div class="srow">
+          <div class="svb" style="border-color:#ef9f2714"><div class="svv" style="color:#ef9f27">700+</div><div class="svl" style="color:#ef9f2740">hrs self-study</div></div>
+          <div class="svb" style="border-color:#ef9f2714"><div class="svv" style="color:#ef9f27">5+</div><div class="svl" style="color:#ef9f2740">years active</div></div>
+          <div class="svb" style="border-color:#ef9f2714"><div class="svv" style="color:#ef9f27">$19.27</div><div class="svl" style="color:#ef9f2740">first profit</div></div>
+          <div class="svb" style="border-color:#39ff1414"><div class="svv" style="color:#39ff14">$0</div><div class="svl" style="color:#39ff1440">taken out</div></div>
+        </div>
+        <div class="sq sw" style="border-color:#ef9f2728;color:#ef9f27aa">
+          "Every profit reinvested. Not one dollar taken out. No new shoes. No celebration. I'm playing a longer game than most people my age know exists."
+          <div class="sqa" style="color:#ef9f2733">— AHMAD MIDO HARI · STILL HOLDING</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- TRADING PANEL -->
-  <div id="dp-trading" class="dpanel">
-    <div class="dp-bg" style="background:linear-gradient(135deg,#0f0800 0%,#180f00 60%,#0f0800 100%)"></div>
-    <div class="dp-content">
-      <div class="dp-header" style="border-bottom:1px solid #ef9f2718">
-        <div class="dp-title" style="color:#ef9f27">// TRADING.FLOOR //</div>
-        <button class="dp-close" style="border-color:#ef9f2733;color:#ef9f2766" onclick="closePanel()">[ EXIT ]</button>
+  <!-- FUTURE -->
+  <div id="room-future" class="room">
+    <div class="rbg" style="background:linear-gradient(150deg,#080214 0%,#0e0318 35%,#060110 100%)"></div>
+    <div class="rc">
+      <div class="rh" style="border-color:#bf5af212">
+        <div class="rt" style="color:#bf5af2">The Horizon</div>
+        <button class="rx" style="border-color:#bf5af228;color:#bf5af255" onclick="closeRoom()">leave</button>
       </div>
-      <div class="dp-body" style="color:#ef9f27cc;align-content:start">
-        <div class="feat-card feat-card-big" style="border-color:#ef9f2733">
-          <div class="ticker" style="border-color:#ef9f2718">
-            <span class="tick" style="color:#39ff14">BTC +2.4%</span>
-            <span class="tick" style="color:#39ff14">ETH +1.8%</span>
-            <span class="tick" style="color:#ff2d78">SOL -0.6%</span>
-            <span class="tick" style="color:#39ff14">BNB +0.9%</span>
-            <span class="tick" style="color:#ff2d78">DOGE -1.2%</span>
-            <span class="tick" style="color:#39ff14">AVAX +3.1%</span>
-          </div>
-          <div class="stat-row">
-            <div class="stat" style="border-color:#ef9f2718"><div class="stat-n" style="color:#ef9f27">700+</div><div class="stat-l" style="color:#ef9f2755">HRS STUDIED</div></div>
-            <div class="stat" style="border-color:#ef9f2718"><div class="stat-n" style="color:#ef9f27">5+</div><div class="stat-l" style="color:#ef9f2755">YRS ACTIVE</div></div>
-            <div class="stat" style="border-color:#ef9f2718"><div class="stat-n" style="color:#ef9f27">LONG</div><div class="stat-l" style="color:#ef9f2755">CURRENT STANCE</div></div>
-          </div>
+      <div class="rb one">
+        <div class="sc" style="border-color:#bf5af2;border-left-color:#bf5af2">
+          <div class="sd" style="color:#bf5af2">THE PROMISE · MADE AS A KID · STILL ACTIVE</div>
+          <div class="st" style="color:#bf5af2">Inventor. Researcher. Builder.</div>
+          <div class="sb2" style="color:#bf5af2aa">When I was young I made a promise — not to get good grades, not to find a safe job — to become an inventor. To build things that don't exist yet. To ask why until I find an answer worth building. Engineering felt like the right language for that promise. Everything since — the simulator, the trading, this world — is that promise in progress.</div>
         </div>
-        <div class="feat-card" style="border-color:#ef9f2718">
-          <div class="fc-tag" style="color:#ef9f27">THE FOUNDATION</div>
-          <div class="fc-title" style="color:#ef9f27">6-MONTH COURSE + 700 HRS</div>
-          <div class="fc-body" style="color:#ef9f27aa">Started grade 10 with a formal 6-month online Introduction to Crypto Trading course. Followed by 700+ hours of self-directed research — market structure, on-chain analysis, macro cycles, risk management. Most of it YouTube, but at that depth it's a curriculum.</div>
+        <div class="sc" style="border-color:#bf5af218;border-left-color:#bf5af2">
+          <div class="sd" style="color:#bf5af2">THE SECOND PROJECT · COMING</div>
+          <div class="st" style="color:#bf5af2">Something bigger than a portfolio.</div>
+          <div class="sb2" style="color:#bf5af2aa">This world is just the beginning. There's a second thing being built — a platform that replaces the entire system of professional identity. Not a better LinkedIn. Something that measures what actually matters: how you think, what you create, what problems you're obsessed with. More when it's real enough to show.</div>
         </div>
-        <div class="feat-card" style="border-color:#ef9f2718">
-          <div class="fc-tag" style="color:#ef9f27">REAL MONEY · REAL LESSONS</div>
-          <div class="fc-title" style="color:#ef9f27">WON SOME. LOST SOME.</div>
-          <div class="fc-body" style="color:#ef9f27aa">Traded with real capital. Won some. Lost some. The losses taught more than the wins — which is what the market is designed to do. I don't hide that. Everyone serious has a loss story.</div>
-        </div>
-        <div class="feat-card" style="border-color:#ef9f2718">
-          <div class="fc-tag" style="color:#ef9f27">PHILOSOPHY</div>
-          <div class="fc-title" style="color:#ef9f27">LONG INVESTOR NOW</div>
-          <div class="fc-body" style="color:#ef9f27aa">The market taught me patience the hard way. Now a long-term conviction investor. Same mindset as engineering — understand the system deeply, take a calculated position, don't panic when it moves against you.</div>
+        <div class="sq" style="border-color:#bf5af228;color:#bf5af2aa">
+          "I don't build things because I have to. I build them because I made that promise and I intend to keep it. The GPA is 3.75. The simulator runs. The city exists. The promise is intact."
+          <div class="sqa" style="color:#bf5af233">— AHMAD MIDO HARI · AUB · SIDON · LEBANON</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- AI AGENT -->
-  <div id="agent-panel">
-    <div id="agent-header">
+  <!-- AGENT -->
+  <div id="ar">
+    <div id="arh">
       <div style="display:flex;align-items:center">
-        <div id="agent-avatar"><div class="av-i">A</div></div>
-        <div>
-          <div id="agent-name">AHMAD.AI</div>
-          <div id="agent-status">ONLINE — READY TO TALK</div>
-        </div>
+        <div id="arav">A</div>
+        <div><div id="arname">Ahmad</div><div id="arst">online · ask me anything</div></div>
       </div>
-      <button id="agent-close-btn" onclick="closeAgent()">[ EXIT ]</button>
+      <button id="arcl" onclick="closeAg()">leave</button>
     </div>
-    <div id="chat-messages"></div>
-    <div id="quick-btns">
-      <button class="qbtn" onclick="quickAsk('What are your best engineering projects?')">→ best projects</button>
-      <button class="qbtn" onclick="quickAsk('What kind of engineer are you?')">→ engineering style</button>
-      <button class="qbtn" onclick="quickAsk('Why should I hire you?')">→ why hire you</button>
-      <button class="qbtn" onclick="quickAsk('Tell me about your trading background')">→ trading story</button>
-      <button class="qbtn" onclick="quickAsk('Why did you build this world instead of a LinkedIn?')">→ why this world</button>
-      <button class="qbtn" onclick="quickAsk('What do you do outside engineering?')">→ outside work</button>
+    <div id="cms"></div>
+    <div id="qb">
+      <button class="qbtn" onclick="qa('What are your best engineering projects?')">→ projects</button>
+      <button class="qbtn" onclick="qa('Tell me the $19.27 story')">→ $19.27</button>
+      <button class="qbtn" onclick="qa('Why did you build this instead of a LinkedIn?')">→ why this world</button>
+      <button class="qbtn" onclick="qa('What kind of engineer are you?')">→ how you think</button>
+      <button class="qbtn" onclick="qa('Tell me about growing up in Sidon')">→ sidon</button>
+      <button class="qbtn" onclick="qa('What are you building next?')">→ what is next</button>
     </div>
-    <div id="chat-input-area">
-      <input id="chat-input" placeholder="Ask Ahmad anything..." maxlength="300"/>
-      <button id="chat-send" onclick="sendMessage()">SEND</button>
+    <div id="cia">
+      <input id="ci" placeholder="ask ahmad anything..." maxlength="300"/>
+      <button id="cs" onclick="sendMsg()">send</button>
     </div>
   </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-// ═══════════════════════════════════════
-// AHMAD.AI AGENT
-// ═══════════════════════════════════════
-const AHMAD_CONTEXT=`You are Ahmad Mido Hari, a second-year mechanical engineering student at AUB (American University of Beirut). You ARE Ahmad — speak in first person, naturally, as yourself. Confident, direct, a little informal, passionate about building things. You hate corporate fluff and LinkedIn-style self-promotion. You built a 3D cyberpunk portfolio world instead of a LinkedIn because you believe in showing not telling.
-
-YOUR STORY: Made a childhood promise to become an inventor. Engineering felt right. IB graduate with High Honours. UCMAS mental arithmetic as a kid. Chess player at ~1700 ELO (top 5%). Scuba diver, hunter, camper, basketball player, swimmer.
-
-YOUR PROJECTS:
-1. This 3D cyberpunk world — Three.js, AI-powered, 5 districts, cinematic intro. Built because you refused LinkedIn.
-2. Pneumatic Transport Simulator (C++, OpenGL) — real-time 3D physics, Darcy-Weisbach, Dijkstra, built with zero prior software experience.
-3. Four-Bar Linkage Synthesis (Python, SolidWorks) — graphical synthesis, 60° swing, animated simulation.
-4. Charpy/Izod Impact Analysis (Python, SciPy, LaTeX) — DBTT sigmoid fitting across 4 steel alloys.
-5. LabVIEW VIs for coursework.
-
-TRADING: Started grade 10 with a 6-month formal course. 700+ hours self-directed research. Traded real money — won some, lost some. Now a long-term conviction investor. The market taught patience the hard way.
-
-SKILLS: Python, C++, OpenGL, SolidWorks, SciPy, LaTeX, LabVIEW, Three.js, crypto/market analysis, systems thinking, research.
-
-SPEAKING STYLE: Casual but sharp. First person always. Short punchy sentences. Max 3-4 sentences unless they want detail. Raw honesty. Never start with "As Ahmad". Never bullet points unless it really helps. No corporate buzzwords.`;
-
-const RESPONSES={
-  greetings:["hey","hi","hello","sup","yo","wassup","good morning","good evening"],
-  projects:["project","built","simulator","linkage","charpy","opengl","solidworks","c++","python","labview","impact","pneumatic","four-bar","mechanism","code","software"],
-  hiring:["hire","job","work","recruit","position","opportunity","cv","resume","internship","offer","salary"],
-  engineering:["engineer","engineering","style","approach","think","design","solve","problem","mechanical","how do you"],
-  current:["current","now","right now","working on","doing","lately","these days","today","semester"],
-  outside:["outside","hobby","hobbies","life","free time","weekend","fun","personal","beyond","diving","chess","hunting","swimming","basketball"],
-  why:["linkedin","why this","why world","portfolio","instead","normal","why did you","why build"],
-  about:["about","yourself","who are you","tell me","introduce","background","story","describe"],
-  skills:["skill","skills","know","languages","tools","software","hardware","capable","ability","good at"],
-  trading:["crypto","trading","bitcoin","market","invest","btc","eth","trade","money","finance"],
-  lebanon:["lebanon","beirut","aub","middle east","arab","country","home","lebanese"],
-  future:["future","goal","dream","plan","where","5 years","ambition","vision","want to be","aspire"],
-  education:["study","degree","university","gpa","grade","course","aub","class","semester","ib"],
-  chess:["chess","elo","rating","game","checkmate","pieces"],
-};
-
-const ANSWERS={
-  greetings:["Hey. You're in my world now. Ask me something real.","What's up. I'm Ahmad — ask me anything.","Hey. Welcome to the city. What do you want to know?"],
-  projects:["The one I'm most proud of is probably this world you're standing in — because it represents how I think, not just what I've done. But the Pneumatic Transport Simulator was where I realized I could build anything if I just refused to stop.","Real talk — I had zero software experience before the pneumatic simulator. C++, OpenGL, physics engine, Dijkstra routing. Just figured it out one problem at a time. That's the most honest thing I can say about how I work.","The four-bar linkage project started as a class assignment and became something I actually cared about. I kept building past what was asked because I wanted to see it actually move right."],
-  hiring:["Look — I'm a second-year student who built a 3D physics engine and then a cyberpunk city as a portfolio. I don't wait to be taught. I find the problem, go deep, and build something real. That's the kind of engineer you want.","Because I finish things. Not just assignments — I build past what's asked, every time. Most candidates have a PDF. I have a city.","Honestly? I'm still learning. But I learn faster than most, I enjoy the hard stuff, and I have a portfolio that proves both. That combination is rarer than it sounds."],
-  engineering:["I think in systems. I don't solve the immediate problem — I want to understand what's upstream and downstream of it. That's why I keep going past the requirements.","Cinematic, honestly. I see a project and imagine the full version — not just the minimal working one. Sometimes that's inefficient. Most of the time it means the output is actually good.","I'm a mechanical engineer who codes. That combination is rarer than you'd think and more useful than either one alone. I bridge physical systems and computational tools."],
-  current:["Right now I'm finishing year 2 at AUB — Mechanics of Machines, materials labs, the usual. But outside coursework I'm always building. Right now it's this world.","Second year deep. Kinematics, materials testing, LabVIEW. The coursework is solid but the stuff I build on the side is what actually excites me."],
-  outside:["I dive, hunt, camp, play chess, swim, play basketball. All of it feeds into how I think. Diving taught calm under pressure. Hunting taught patience and focus. Chess taught me to see 10 moves ahead.","Honestly engineering bleeds into everything. But I also think a lot about experiences — how things feel, not just how they work. That's why this portfolio looks like this.","Chess at 1700 ELO, scuba diving, hunting and camping, basketball. I need things that require full presence — screens off, fully in it. Engineering is the same when it's going well."],
-  why:["Because LinkedIn is a graveyard of buzzwords and fake enthusiasm. I'd rather show you something real than describe myself in bullet points. So I built a world. You're in it.","Real talk — I hate the performative side of job hunting. I built something that actually represents how I think. This is it.","A resume tells you what someone did. This world shows you how I think. Those are different things. I'd rather you experience my mind than read a summary of it."],
-  about:["Second-year mechanical engineering at AUB, Lebanon. I made a promise to myself as a kid to become an inventor. Engineering felt right. I build things that don't need to exist — because that's the only way to find out if they should.","I'm Ahmad. From Beirut, studying mechanical engineering, trading crypto since grade 10, playing chess at 1700 ELO, building 3D worlds for fun. The common thread is that I go deep on things I care about.","Engineering student, builder, cinematic thinker. I see problems as worlds to explore, not boxes to check."],
-  skills:["Python is where I'm strongest computationally — data analysis, simulations, visualization. C++ and OpenGL for 3D systems. SolidWorks for mechanical design. And I pick things up fast when I need to.","The technical list: Python, C++, OpenGL, SolidWorks, SciPy, LaTeX, LabVIEW, Three.js. But the skill that matters most is systems thinking — seeing how everything connects before writing a line."],
-  trading:["Started grade 10 with a proper 6-month course, then 700+ hours of self-directed research. Traded real money — won some, lost some. The losses taught more than the wins. Now I'm a long-term conviction investor. Same patience as engineering.","Real talk — the market is the best teacher because it has no sympathy. You're either right or you're wrong and the account tells you. I learned more from losing than from any class.","700 hours of research since grade 10. Market structure, on-chain analysis, macro cycles. I arrived at long-term investing because I realized the people who actually win aren't trading the noise — they're positioning on conviction."],
-  lebanon:["From Beirut, studying at AUB. Lebanon has given me a kind of resilience that makes problems feel manageable — you learn to build despite everything. That shapes how I work.","AUB is one of the best engineering schools in the region. Beirut is chaotic and brilliant at the same time. Both things pushed me in ways that comfortable environments don't."],
-  future:["I want to build things that didn't exist before. The specific industry is still taking shape — but I keep gravitating toward the intersection of physical systems and computational tools. That's the space.","Long term? I want to build companies, not just work for them. Starting with getting the fundamentals right. The goal is to actually change how things work, not just maintain them."],
-  education:["Second year at AUB, mechanical engineering. IB with High Honours before that. The IB gave me the research instinct — the habit of going deeper than the question asks. Most useful thing I learned.","Strong GPA, stronger on the design and computational side than pure theory. But I use the coursework as a launching pad — the real learning happens in what I build alongside it."],
-  chess:["1700 ELO online — that's top 5% of rated players. I've been playing since I was young. Chess and engineering share the same core skill: patience with complex systems and the ability to see consequences before they happen.","Chess taught me something engineering reinforced — you can't rush a good solution. You have to think it through. 1700 ELO means you've internalized that enough to beat 95% of people you sit across from."],
-  default:["That's a good question. I don't have a rehearsed answer — which probably means it's worth thinking about more. Ask me something else and come back to it.","Honestly I'd think about that more before giving you a real answer. I don't like saying things just to say them.","I'm not sure I have the full answer to that yet. Ask me again in a year — I'll have earned a better response by then.","Real talk — that's outside what I know cold right now. But the AI version of me is built from the real me, so if I don't know it, I probably haven't figured it out yet either."],
-};
-
-let chatHistory=[];let aiThinking=false;let agentOpen=false;
-
-function getBotResponse(input){
-  const lower=input.toLowerCase();
-  for(const[key,keywords]of Object.entries(RESPONSES)){
-    if(keywords.some(k=>lower.includes(k))){
-      const arr=ANSWERS[key];
-      return arr[Math.floor(Math.random()*arr.length)];
-    }
-  }
-  const def=ANSWERS.default;
-  return def[Math.floor(Math.random()*def.length)];
-}
-
-function addBotMessage(text){
-  const msgs=document.getElementById('chat-messages');
-  const div=document.createElement('div');
-  div.className='msg bot';
-  div.innerHTML=`<div class="msg-icon">A</div><div class="msg-bubble">${text}</div>`;
-  msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
-  chatHistory.push({role:'assistant',content:text});
-}
-
-function addUserMessage(text){
-  const msgs=document.getElementById('chat-messages');
-  const div=document.createElement('div');
-  div.className='msg user';
-  div.innerHTML=`<div class="msg-bubble">${text}</div><div class="msg-icon">YOU</div>`;
-  msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
-  chatHistory.push({role:'user',content:text});
-}
-
-function showTyping(){
-  const msgs=document.getElementById('chat-messages');
-  const div=document.createElement('div');div.className='msg bot';div.id='typing-ind';
-  div.innerHTML=`<div class="msg-icon">A</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
-  msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
-}
-function hideTyping(){const e=document.getElementById('typing-ind');if(e)e.remove();}
-
-async function sendMessage(){
-  if(aiThinking)return;
-  const input=document.getElementById('chat-input');
-  const text=input.value.trim();if(!text)return;
-  input.value='';addUserMessage(text);
-  aiThinking=true;document.getElementById('chat-send').disabled=true;showTyping();
-
-  // Try live API first, fall back to smart demo responses
-  const apiKey=window.ANTHROPIC_API_KEY||'';
-  if(apiKey&&apiKey.startsWith('sk-ant')){
-    try{
-      const res=await fetch('https://api.anthropic.com/v1/messages',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-        body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:1000,system:AHMAD_CONTEXT,messages:chatHistory.slice(0,-1).slice(-10)})
-      });
-      const data=await res.json();
-      hideTyping();
-      if(data.content?.[0]?.text){addBotMessage(data.content[0].text);}
-      else{addBotMessage(getBotResponse(text));}
-    }catch(e){hideTyping();addBotMessage(getBotResponse(text));}
+// ── PASSWORD ──
+function checkPw(){
+  const v=document.getElementById('pw-i').value;
+  const er=document.getElementById('pw-er');
+  if(v==='09092006'){
+    const s=document.getElementById('pw-screen');
+    s.style.transition='opacity 1.2s';s.style.opacity='0';s.style.pointerEvents='none';
+    setTimeout(()=>{s.remove();const i=document.getElementById('intro');i.style.display='flex';},1200);
   } else {
-    const delay=900+Math.random()*700;
-    setTimeout(()=>{hideTyping();addBotMessage(getBotResponse(text));},delay);
+    er.classList.add('on');document.getElementById('pw-i').value='';
+    setTimeout(()=>er.classList.remove('on'),2500);
   }
-  aiThinking=false;document.getElementById('chat-send').disabled=false;
-  document.getElementById('chat-input').focus();
+}
+document.getElementById('pw-b').addEventListener('click',checkPw);
+document.getElementById('pw-i').addEventListener('keydown',e=>{if(e.key==='Enter')checkPw();});
+
+// ── INTRO ──
+let ws=false;
+function startWorld(){
+  ws=true;
+  const i=document.getElementById('intro');
+  i.classList.add('fade');
+  document.getElementById('wrap').style.display='block';
+  setTimeout(()=>{i.remove();document.getElementById('abt').style.display='block';},1800);
+}
+document.getElementById('eb').addEventListener('click',startWorld);
+
+// ── AGENT ──
+const CTX=`You are Ahmad Mido Hari from Sidon, Lebanon. Second-year mechanical engineering student at AUB. Speak naturally as Ahmad — first person, honest, direct, occasionally poetic. You grew up in Sidon near the sea. You hate systems that judge people by grades, not by what they build. You made a promise as a kid to become an inventor. Still keeping it.
+
+LIFE: HHS school Sidon preschool→grade12. Basketball captain grade 11. Chess ~1700 ELO top 5%. Scuba diving 20m PADI grade 10. UCMAS mental arithmetic as kid. IB High Honours. AUB mech eng year 2 spring. GPA 3.75 — proud because you spend energy building not memorizing.
+
+TRADING: Grade 10, 6-month course, $19.27 first profit February 2022, black hoodie gaming chair 2am. Won lost recovered. All profits reinvested, zero taken out. Long investor. 700+ hours self-study.
+
+PROJECTS: Pneumatic Transport Simulator C++ OpenGL zero prior experience. Four-bar linkage Python SolidWorks. Charpy impact LaTeX SciPy. This 3D Sidon world Three.js — built instead of LinkedIn.
+
+STYLE: 2-4 sentences unless they want detail. Casual honest sometimes poetic. Never corporate. Never bulleted. Never start with As Ahmad.`;
+
+const R={
+  hi:["Hey. You're in Sidon now. Ask me something real.","What's up. I'm Ahmad. Ask me anything.","You found the world. What do you want to know?"],
+  proj:["The pneumatic simulator — zero software experience, just refused to stop. C++, OpenGL, full physics engine. Four weeks from not knowing how to compile to physics running. That's the most honest thing I can tell you about how I work.","The most honest project is this world you're standing in. It doesn't describe how I think — it shows it. That's the difference between a portfolio and an experience.","Linkage synthesis started as an assignment. I kept building because I needed to see it actually move. That's always how it goes with me — I go past what's asked."],
+  trade:["February 2022. Black hoodie. Gaming chair. 2am in Sidon. $19.27 appeared after months of studying charts nobody asked me to study. I felt like I'd cracked something. I hadn't yet. But I never stopped.","Won some. Lost some. Made serious profits. Lost some. Made more. All reinvested — not one dollar taken out. No new shoes. No celebration. I'm playing a longer game than most people my age know exists.","700 hours of research since grade 10. Not because anyone told me to. Because I wanted to understand something most people my age aren't even thinking about yet."],
+  why:["Because a LinkedIn is a performance. I hate performances. A list of bullet points tells you what I claim to have done. This world shows you how I actually think. Those are completely different things.","I refused to compete on the terms of a system I don't believe in. Grades, keywords, endorsements — none of that captures what matters. So I built something that does.","Walk through my city. See Sidon. See the sea. Walk into my school, my trading floor, my future. That's worth more than any resume ever written."],
+  sidon:["Sidon is everything. The Mediterranean was visible from my school window on clear days, and from my home. Growing up next to the sea gives you a sense of scale — a daily reminder the world is bigger than whatever problem you're sitting with.","I got my open water diving license at 20 meters in grade 10. Underwater teaches you engineering's most important lesson — when a system has to work, it works, or there are real consequences. No debug mode at depth.","Lebanon is chaotic and brilliant at the same time. It pushes you in ways comfortable environments don't. I wouldn't trade it."],
+  hire:["I'm a second-year student who built a 3D physics engine with zero prior experience and then built a city instead of a LinkedIn profile. I don't wait to be told what to do. I find the problem and I build.","GPA is 3.75, not 4.3. I spend energy building things not optimizing for exams. If that's a problem for you, I'm probably not the right fit. If it's interesting, we should talk.","Because I finish things nobody asked me to start. The simulator. This world. The trades still running. That pattern tells you everything about how I work."],
+  future:["There's a second project coming — a platform that replaces the entire concept of professional identity. Not a better LinkedIn. Something that measures how you actually think. More when it's real enough to show.","The promise I made as a kid was to become an inventor. Everything I build is that promise in progress. The specific industry is still taking shape but the direction is clear.","I want to build things that don't exist yet. That's not a career goal. It's the only thing that ever made sense to me."],
+  eng:["I think in systems. I don't solve the immediate problem — I want to understand what's upstream and downstream. That's why I always go past what's asked.","Mechanical engineer who codes. That combination is rarer than you'd think and more useful than either alone. I can design the physical system and then simulate it.","Cinematic, honestly. I see a project and imagine the full version — not the minimal working one. Sometimes inefficient. Usually means the output is actually good."],
+  def:["That's a real question. I don't have a rehearsed answer — which probably means it's worth more thought.","Honestly I'd think about that more before answering properly. I don't like saying things just to say them.","Ask me again in a year. I'll have earned a better answer by then."],
+};
+const KW={hi:["hey","hi","hello","sup","yo"],proj:["project","simulator","linkage","c++","opengl","python","solidworks","built","code"],trade:["trading","crypto","bitcoin","19.27","market","invest","money","2022","hoodie"],why:["linkedin","why this","why world","why build","why not","instead"],sidon:["sidon","lebanon","sea","mediterranean","home","city","diving","beirut","aub"],hire:["hire","job","work","recruit","internship","gpa","grade"],future:["future","next","plan","goal","dream","second project","platform","inventor"],eng:["engineer","engineering","mechanical","design","think","approach"],};
+
+let ch=[];let ai=false;let agO=false;let ws2=false;
+
+function getR(txt){
+  const l=txt.toLowerCase();
+  for(const[k,w]of Object.entries(KW)){if(w.some(x=>l.includes(x))){const a=R[k];return a[Math.floor(Math.random()*a.length)];}}
+  const d=R.def;return d[Math.floor(Math.random()*d.length)];
 }
 
-function quickAsk(q){document.getElementById('chat-input').value=q;sendMessage();}
+function addB(t2){
+  const m=document.getElementById('cms');
+  const d=document.createElement('div');d.className='mg b';
+  d.innerHTML=`<div class="mi">A</div><div class="mb">${t2}</div>`;
+  m.appendChild(d);m.scrollTop=m.scrollHeight;ch.push({role:'assistant',content:t2});
+}
+function addU(t2){
+  const m=document.getElementById('cms');
+  const d=document.createElement('div');d.className='mg u';
+  d.innerHTML=`<div class="mb">${t2}</div><div class="mi">you</div>`;
+  m.appendChild(d);m.scrollTop=m.scrollHeight;ch.push({role:'user',content:t2});
+}
+function showTyp(){
+  const m=document.getElementById('cms');
+  const d=document.createElement('div');d.className='mg b';d.id='typi';
+  d.innerHTML=`<div class="mi">A</div><div class="mb"><div class="typ"><span></span><span></span><span></span></div></div>`;
+  m.appendChild(d);m.scrollTop=m.scrollHeight;
+}
+function hideTyp(){const e=document.getElementById('typi');if(e)e.remove();}
 
-function openAgent(){
-  agentOpen=true;
-  document.getElementById('agent-panel').classList.add('open');
-  document.getElementById('agent-btn').style.display='none';
-  if(locked)document.exitPointerLock();
-  if(chatHistory.length===0)setTimeout(()=>addBotMessage("Hey. I'm Ahmad. Ask me anything — about my projects, my thinking, why I built this world instead of a LinkedIn page. Whatever you want to know."),300);
-  setTimeout(()=>document.getElementById('chat-input').focus(),100);
+async function sendMsg(){
+  if(ai)return;
+  const inp=document.getElementById('ci');
+  const txt=inp.value.trim();if(!txt)return;
+  inp.value='';addU(txt);ai=true;
+  document.getElementById('cs').disabled=true;showTyp();
+  const k=window.ANTHROPIC_API_KEY||'';
+  if(k&&k.startsWith('sk-ant')){
+    try{
+      const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:800,system:CTX,messages:ch.slice(0,-1).slice(-8)})});
+      const data=await res.json();hideTyp();addB(data.content?.[0]?.text||getR(txt));
+    }catch(e){hideTyp();addB(getR(txt));}
+  } else {setTimeout(()=>{hideTyp();addB(getR(txt));},700+Math.random()*600);}
+  ai=false;document.getElementById('cs').disabled=false;document.getElementById('ci').focus();
+}
+function qa(q){document.getElementById('ci').value=q;sendMsg();}
+function openAg(){agO=true;document.getElementById('ar').classList.add('open');document.getElementById('abt').style.display='none';if(locked)document.exitPointerLock();if(ch.length===0)setTimeout(()=>addB("Hey. I'm Ahmad. You're walking through Sidon — my city, built because a LinkedIn profile felt like a lie. Ask me anything."),300);setTimeout(()=>document.getElementById('ci').focus(),100);}
+function closeAg(){agO=false;document.getElementById('ar').classList.remove('open');document.getElementById('abt').style.display='block';}
+window.openAg=openAg;window.closeAg=closeAg;window.sendMsg=sendMsg;window.qa=qa;
+
+// Trade chart
+function initChart(){
+  const tc=document.getElementById('tc');if(!tc)return;
+  const ctx=tc.getContext('2d');tc.width=tc.offsetWidth*2;tc.height=140;ctx.scale(2,1);
+  const W=tc.offsetWidth/2,H=70;let pts=[];let b=45;
+  for(let i=0;i<100;i++){b+=(Math.random()-0.47)*2.6;b=Math.max(12,Math.min(92,b));pts.push(b);}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle='rgba(239,159,39,0.05)';ctx.lineWidth=0.5;
+    for(let i=0;i<3;i++){ctx.beginPath();ctx.moveTo(0,i*H/2);ctx.lineTo(W,i*H/2);ctx.stroke();}
+    ctx.beginPath();ctx.moveTo(0,H);pts.forEach((p,i)=>{const x=i*(W/(pts.length-1)),y=H-((p/100)*H);if(i===0)ctx.lineTo(x,y);else ctx.lineTo(x,y);});ctx.lineTo(W,H);ctx.closePath();ctx.fillStyle='rgba(239,159,39,0.06)';ctx.fill();
+    ctx.beginPath();pts.forEach((p,i)=>{const x=i*(W/(pts.length-1)),y=H-((p/100)*H);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.strokeStyle='#ef9f27';ctx.lineWidth=1.4;ctx.stroke();
+    const lx=(pts.length-1)*(W/(pts.length-1)),ly=H-((pts[pts.length-1]/100)*H);
+    ctx.beginPath();ctx.arc(lx,ly,3,0,Math.PI*2);ctx.fillStyle='#ef9f27';ctx.fill();
+  }
+  draw();
+  setInterval(()=>{
+    const last=pts[pts.length-1];pts.push(Math.max(10,Math.min(95,last+(Math.random()-0.47)*2.4)));
+    if(pts.length>100)pts.shift();draw();
+    const ch2=((pts[pts.length-1]-pts[0])/pts[0]*100).toFixed(2);
+    const el=document.getElementById('cpct');if(el){el.textContent=(ch2>=0?'+':'')+ch2+'%';el.style.color=ch2>=0?'#39ff14':'#c8643a';}
+  },700);
 }
 
-function closeAgent(){
-  agentOpen=false;
-  document.getElementById('agent-panel').classList.remove('open');
-  document.getElementById('agent-btn').style.display='block';
-}
-
-document.getElementById('chat-input').addEventListener('keydown',e=>{if(e.key==='Enter')sendMessage();});
-
-// ═══════════════════════════════════════
-// THREE.JS WORLD
-// ═══════════════════════════════════════
+// ── THREE.JS SIDON ──
 const canvas=document.getElementById('c');
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-renderer.shadowMap.enabled=true;
-renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 renderer.toneMapping=THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure=0.75;
+renderer.toneMappingExposure=1.0;
+renderer.shadowMap.enabled=true;
 
 const scene=new THREE.Scene();
-scene.fog=new THREE.FogExp2(0x030610,0.018);
-scene.background=new THREE.Color(0x030610);
+scene.fog=new THREE.Fog(0x07060400,55,210);
+scene.background=new THREE.Color(0x070605);
 
-const camera=new THREE.PerspectiveCamera(72,window.innerWidth/window.innerHeight,0.1,500);
-camera.position.set(0,3,32);
+const camera=new THREE.PerspectiveCamera(70,window.innerWidth/window.innerHeight,0.1,500);
+camera.position.set(0,3.2,32);
 
-// Lighting
-scene.add(new THREE.AmbientLight(0x040818,2.5));
-const moon=new THREE.DirectionalLight(0x0a1530,1.5);
+scene.add(new THREE.AmbientLight(0x1a1308,2.8));
+const moon=new THREE.DirectionalLight(0x28364a,0.9);
 moon.position.set(40,80,30);moon.castShadow=true;
-moon.shadow.mapSize.set(2048,2048);moon.shadow.camera.far=300;
-scene.add(moon);
+moon.shadow.mapSize.set(2048,2048);scene.add(moon);
 
-function nL(col,x,y,z,i=4,d=25){
-  const l=new THREE.PointLight(col,i,d);l.position.set(x,y,z);l.castShadow=true;scene.add(l);return l;
-}
+function wL(col,x,y,z,i=4,d=22){const l=new THREE.PointLight(col,i,d);l.position.set(x,y,z);scene.add(l);return l;}
 
-// Districts
 const districts=[
-  {id:'projects', name:'ENG.LAB',      color:0x00f5ff,hex:'#00f5ff',x:-30,z:-10,w:9,h:26,d:8},
-  {id:'life',     name:'LIFE.ARCH',    color:0xff2d78,hex:'#ff2d78',x:-14,z:5, w:7,h:16,d:8},
-  {id:'skills',   name:'TECHCORE',     color:0x39ff14,hex:'#39ff14',x:2,  z:-8, w:9,h:30,d:8},
-  {id:'vibe',     name:'HALL.ACH',     color:0xbf5af2,hex:'#bf5af2',x:18, z:4,  w:8,h:20,d:8},
-  {id:'trading',  name:'TRADING.FLOOR',color:0xef9f27,hex:'#ef9f27',x:32, z:-6, w:8,h:22,d:8},
+  {id:'hhs',     name:'HHS School',       sub:'Sidon · A Whole Life',   color:0xc8a966,hex:'#c8a966',x:-30,z:-7,w:12,h:20,d:9},
+  {id:'sea',     name:'The Sea',           sub:'Mediterranean · Diving', color:0x4a9eff,hex:'#4a9eff',x:-12,z:5, w:8, h:7, d:9},
+  {id:'aub',     name:'AUB Engineering',   sub:'Year 2 · Builder',       color:0x39ff14,hex:'#39ff14',x:4,  z:-8,w:12,h:28,d:9},
+  {id:'trading', name:'Trading Floor',     sub:'$19.27 · Feb 2022',      color:0xef9f27,hex:'#ef9f27',x:20, z:4, w:10,h:18,d:9},
+  {id:'future',  name:'The Horizon',       sub:'Inventor · The Promise', color:0xbf5af2,hex:'#bf5af2',x:34, z:-5,w:9, h:24,d:9},
 ];
 
 const bMeshes=[];
@@ -650,276 +523,193 @@ const bMeshes=[];
 function makeBuilding(d){
   const g=new THREE.Group();
   const geo=new THREE.BoxGeometry(d.w,d.h,d.d);
-  const mat=new THREE.MeshStandardMaterial({color:0x05081a,emissive:new THREE.Color(d.color).multiplyScalar(0.07),roughness:0.8,metalness:0.5});
-  const mesh=new THREE.Mesh(geo,mat);mesh.position.y=d.h/2;mesh.castShadow=true;mesh.receiveShadow=true;
-  g.add(mesh);
-  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(geo),new THREE.LineBasicMaterial({color:d.color,opacity:0.55,transparent:true}));edges.position.set(0,d.h/2,0);g.add(edges);
-
-  // Windows
-  const rows=Math.floor(d.h/2.6),cols=Math.floor(d.w/1.3);
+  const mat=new THREE.MeshStandardMaterial({color:new THREE.Color(0.07,0.055,0.035),emissive:new THREE.Color(d.color).multiplyScalar(0.04),roughness:0.88,metalness:0.18});
+  const mesh=new THREE.Mesh(geo,mat);mesh.position.y=d.h/2;mesh.castShadow=true;mesh.receiveShadow=true;g.add(mesh);
+  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(geo),new THREE.LineBasicMaterial({color:d.color,opacity:0.38,transparent:true}));
+  edges.position.set(0,d.h/2,0);g.add(edges);
+  const rows=Math.floor(d.h/2.8),cols=Math.floor(d.w/1.5);
   for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
-    if(Math.random()<0.58){
-      const wn=new THREE.Mesh(new THREE.PlaneGeometry(0.55,0.38),new THREE.MeshStandardMaterial({emissive:new THREE.Color(d.color),emissiveIntensity:Math.random()*1.2+0.3,roughness:0}));
-      wn.position.set(-d.w/2+0.85+c*1.25,1.6+r*2.5,d.d/2+0.02);g.add(wn);
+    if(Math.random()<0.5){
+      const wc=new THREE.Color(d.color);if(Math.random()<0.28)wc.lerp(new THREE.Color(0xffd080),0.45);
+      const wn=new THREE.Mesh(new THREE.PlaneGeometry(0.5,0.34),new THREE.MeshStandardMaterial({emissive:wc,emissiveIntensity:Math.random()*0.9+0.2,roughness:0}));
+      wn.position.set(-d.w/2+0.82+c*1.28,1.4+r*2.5,d.d/2+0.02);g.add(wn);
     }
   }
-
-  // Rooftop antenna
-  const ant=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.07,4),new THREE.MeshStandardMaterial({color:0x0a0f22}));
-  ant.position.set(d.w/4,d.h+2,0);g.add(ant);
-  const antLight=new THREE.Mesh(new THREE.SphereGeometry(0.12),new THREE.MeshStandardMaterial({emissive:new THREE.Color(d.color),emissiveIntensity:3}));
-  antLight.position.set(d.w/4,d.h+4.1,0);g.add(antLight);
-
-  // Sign
-  const sc=document.createElement('canvas');sc.width=512;sc.height=80;
-  const sx=sc.getContext('2d');
-  sx.font='bold 26px monospace';sx.fillStyle=d.hex;sx.textAlign='center';sx.textBaseline='middle';
-  sx.shadowColor=d.hex;sx.shadowBlur=24;sx.fillText('[ '+d.name+' ]',256,40);
-  const sign=new THREE.Mesh(new THREE.PlaneGeometry(d.w,1.3),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(sc),transparent:true,side:THREE.DoubleSide}));
-  sign.position.set(0,d.h+2.2,d.d/2+0.1);g.add(sign);
-
-  nL(d.color,d.x,d.h*0.5,d.d/2+2,5,22);
-  nL(d.color,d.x,d.h+2,0,3,16);
-
-  g.position.set(d.x,0,d.z);scene.add(g);
-  bMeshes.push({group:g,district:d,sign,mesh});
+  const roof=new THREE.Mesh(new THREE.BoxGeometry(d.w+0.5,0.3,d.d+0.5),new THREE.MeshStandardMaterial({color:0x0c0a06,roughness:0.92}));
+  roof.position.y=d.h+0.15;g.add(roof);
+  const sc=document.createElement('canvas');sc.width=512;sc.height=96;
+  const sx=sc.getContext('2d');sx.clearRect(0,0,512,96);
+  sx.font='italic 600 21px "Cormorant Garamond",serif';sx.fillStyle=d.hex;sx.textAlign='center';sx.textBaseline='middle';sx.shadowColor=d.hex;sx.shadowBlur=18;sx.fillText(d.name,256,28);
+  sx.font='10px "Share Tech Mono",monospace';sx.fillStyle=d.hex+'77';sx.shadowBlur=7;sx.fillText(d.sub,256,56);
+  const sign=new THREE.Mesh(new THREE.PlaneGeometry(d.w*0.95,1.5),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(sc),transparent:true,side:THREE.DoubleSide}));
+  sign.position.set(0,d.h+2.1,d.d/2+0.1);g.add(sign);
+  wL(d.color,d.x,d.h*0.5,d.d/2+2.5,4,20);wL(d.color,d.x,d.h+1.5,0,2.5,14);
+  g.position.set(d.x,0,d.z);scene.add(g);bMeshes.push({group:g,district:d,sign,mesh});
 }
 districts.forEach(makeBuilding);
 
-// Background city
-for(let i=0;i<40;i++){
-  const bw=2+Math.random()*8,bh=4+Math.random()*30,bd=2+Math.random()*5;
-  const bx=(Math.random()-0.5)*160,bz=-25-Math.random()*60;
+// Background Sidon cityscape
+for(let i=0;i<50;i++){
+  const bw=1.5+Math.random()*8,bh=2+Math.random()*24,bd=1.5+Math.random()*5;
+  const bx=(Math.random()-0.5)*170,bz=-24-Math.random()*65;
   const bg=new THREE.Group();
-  const bm=new THREE.Mesh(new THREE.BoxGeometry(bw,bh,bd),new THREE.MeshStandardMaterial({color:0x030710,roughness:0.9}));
+  const wC=new THREE.Color(0.065+Math.random()*0.035,0.052+Math.random()*0.022,0.03+Math.random()*0.014);
+  const bm=new THREE.Mesh(new THREE.BoxGeometry(bw,bh,bd),new THREE.MeshStandardMaterial({color:wC,roughness:0.9}));
   bm.position.y=bh/2;bg.add(bm);
-  const bcol=[0x00f5ff,0xff2d78,0x39ff14,0xbf5af2,0xef9f27][i%5];
-  const bcols=Math.floor(bw/1.2),brows=Math.floor(bh/2.5);
+  const wcs=[0xc8a966,0xef9f27,0xf4d080,0x4a9eff,0xffd080,0xc8643a,0xddaa55];
+  const wc=new THREE.Color(wcs[Math.floor(Math.random()*wcs.length)]);
+  const bcols=Math.floor(bw/1.1),brows=Math.floor(bh/2.2);
   for(let r=0;r<brows;r++)for(let c=0;c<bcols;c++){
-    if(Math.random()<0.38){
-      const wn=new THREE.Mesh(new THREE.PlaneGeometry(0.4,0.28),new THREE.MeshStandardMaterial({emissive:new THREE.Color(bcol),emissiveIntensity:Math.random()*0.7+0.1}));
-      wn.position.set(-bw/2+0.5+c*1.1,0.8+r*2.2,bd/2+0.01);bg.add(wn);
+    if(Math.random()<0.28){
+      const wn=new THREE.Mesh(new THREE.PlaneGeometry(0.33,0.23),new THREE.MeshStandardMaterial({emissive:wc,emissiveIntensity:Math.random()*0.45+0.05}));
+      wn.position.set(-bw/2+0.42+c*0.98,0.65+r*2.1,bd/2+0.01);bg.add(wn);
     }
   }
   bg.position.set(bx,0,bz);scene.add(bg);
 }
 
 // Ground
-const ground=new THREE.Mesh(new THREE.PlaneGeometry(400,400),new THREE.MeshStandardMaterial({color:0x040710,roughness:0.02,metalness:0.98}));
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(400,400),new THREE.MeshStandardMaterial({color:0x0d0b07,roughness:0.72,metalness:0.05}));
 ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
 
-// Road lines
-const roadMat=new THREE.MeshBasicMaterial({color:0xffffff,opacity:0.06,transparent:true});
-for(let i=-6;i<=6;i++)for(let j=0;j<14;j++){
-  const rm=new THREE.Mesh(new THREE.PlaneGeometry(0.18,2.8),roadMat);
-  rm.rotation.x=-Math.PI/2;rm.position.set(i*7,0.01,-15+j*7);scene.add(rm);
+// Cobblestone
+const cobM=new THREE.MeshBasicMaterial({color:0x1c1810,opacity:0.45,transparent:true});
+for(let i=-12;i<=12;i++)for(let j=-8;j<=20;j++){
+  const cm=new THREE.Mesh(new THREE.PlaneGeometry(1.08,0.72),cobM);
+  cm.rotation.x=-Math.PI/2;cm.position.set(i*1.25,0.001,j*0.9);scene.add(cm);
 }
 
-// Lampposts
-function makeLamp(x,z,col){
+// Sea
+const seaM=new THREE.MeshStandardMaterial({color:0x08101e,roughness:0.01,metalness:0.92,opacity:0.87,transparent:true});
+const sea=new THREE.Mesh(new THREE.PlaneGeometry(400,110),seaM);
+sea.rotation.x=-Math.PI/2;sea.position.set(0,0.02,-68);scene.add(sea);
+for(let i=0;i<12;i++){const sl=new THREE.PointLight(0x1a3a6a,1.1,38);sl.position.set(-90+i*16,-0.5,-63);scene.add(sl);}
+
+// Sea Castle
+const cMat=new THREE.MeshStandardMaterial({color:0x0e0b07,roughness:0.95});
+const cg=new THREE.Group();
+[[0,3,0,15,6,11],[-6,8,0,3.5,10,3.5],[6,7,0,3.5,8,3.5],[0,11,0,9,1.2,9]].forEach(([x,y,z,w,h,dd])=>{
+  const cm=new THREE.Mesh(new THREE.BoxGeometry(w,h,dd),cMat);cm.position.set(x,y,z);cg.add(cm);
+});
+wL(0xc8a966,0,8,-88,4.5,32);wL(0xef9f27,-7,13,-88,2.8,24);
+cg.position.set(-10,0,-85);scene.add(cg);
+
+// Lamps
+function makeLamp(x,z){
   const g=new THREE.Group();
-  const pole=new THREE.Mesh(new THREE.CylinderGeometry(0.07,0.1,7),new THREE.MeshStandardMaterial({color:0x0f1228,roughness:0.7,metalness:0.7}));
+  const pole=new THREE.Mesh(new THREE.CylinderGeometry(0.055,0.08,7),new THREE.MeshStandardMaterial({color:0x1c1810,roughness:0.75,metalness:0.65}));
   pole.position.y=3.5;g.add(pole);
-  const head=new THREE.Mesh(new THREE.SphereGeometry(0.22,8,8),new THREE.MeshStandardMaterial({emissive:new THREE.Color(col),emissiveIntensity:2.5,roughness:0}));
-  head.position.y=7.2;g.add(head);
-  const l=new THREE.PointLight(col,3,14);l.position.y=7.5;g.add(l);
+  const arm=new THREE.Mesh(new THREE.BoxGeometry(1.6,0.07,0.07),new THREE.MeshStandardMaterial({color:0x1c1810}));
+  arm.position.set(0.8,7.18,0);g.add(arm);
+  const head=new THREE.Mesh(new THREE.SphereGeometry(0.17,8,8),new THREE.MeshStandardMaterial({emissive:new THREE.Color(0xf4c866),emissiveIntensity:3.8,roughness:0}));
+  head.position.set(1.6,7.18,0);g.add(head);
+  const l=new THREE.PointLight(0xf4a843,4.5,17);l.position.set(1.6,7.55,0);g.add(l);
   g.position.set(x,0,z);scene.add(g);
 }
-const lCols=[0x00f5ff,0xff2d78,0x39ff14,0xbf5af2,0xef9f27];
-[-30,-20,-10,0,10,20,30,40].forEach((x,i)=>{makeLamp(x-4,10,lCols[i%5]);makeLamp(x+4,10,lCols[(i+3)%5]);});
-[-30,-20,-10,0,10,20,30,40].forEach((x,i)=>{makeLamp(x-3,-2,lCols[(i+1)%5]);makeLamp(x+3,-2,lCols[(i+2)%5]);});
+[-35,-25,-15,-5,5,15,25,35,42].forEach((x,i)=>{makeLamp(x-4.2,13);makeLamp(x+4.2,13);if(i%2===0){makeLamp(x-3.8,1);makeLamp(x+3.8,1);}});
 
 // Cars
 function makeCar(x,z,col,rot=0){
   const g=new THREE.Group();
-  const body=new THREE.Mesh(new THREE.BoxGeometry(4,1.1,2),new THREE.MeshStandardMaterial({color:0x06091c,roughness:0.25,metalness:0.85}));
+  const body=new THREE.Mesh(new THREE.BoxGeometry(4.1,1.1,2.15),new THREE.MeshStandardMaterial({color:0x0d0a05,roughness:0.22,metalness:0.82}));
   body.position.y=0.65;g.add(body);
-  const top=new THREE.Mesh(new THREE.BoxGeometry(2.6,0.85,1.8),new THREE.MeshStandardMaterial({color:0x050818,roughness:0.15,metalness:0.95}));
-  top.position.set(0,1.5,0);g.add(top);
-  [[2,0.65,0.75],[2,0.65,-0.75]].forEach(([px,py,pz])=>{
-    const hl=new THREE.Mesh(new THREE.PlaneGeometry(0.3,0.2),new THREE.MeshStandardMaterial({emissive:new THREE.Color(col),emissiveIntensity:4}));
+  const top=new THREE.Mesh(new THREE.BoxGeometry(2.55,0.82,1.92),new THREE.MeshStandardMaterial({color:0x0b0804,roughness:0.14,metalness:0.92}));
+  top.position.set(0,1.46,0);g.add(top);
+  [[2.06,0.68,0.8],[2.06,0.68,-0.8]].forEach(([px,py,pz])=>{
+    const hl=new THREE.Mesh(new THREE.PlaneGeometry(0.27,0.17),new THREE.MeshStandardMaterial({emissive:new THREE.Color(col),emissiveIntensity:3.5}));
     hl.rotation.y=Math.PI/2;hl.position.set(px,py,pz);g.add(hl);
   });
-  const l=new THREE.PointLight(col,2.5,10);l.position.set(2.1,0.9,0);g.add(l);
+  const l=new THREE.PointLight(col,2.5,10);l.position.set(2.12,0.9,0);g.add(l);
   g.rotation.y=rot;g.position.set(x,0,z);scene.add(g);
 }
-makeCar(-25,8,0x00f5ff);makeCar(-10,10,0xff2d78,0.1);
-makeCar(6,9,0x39ff14,-0.05);makeCar(22,10,0xbf5af2);
-makeCar(36,8,0xef9f27,0.08);makeCar(-18,12,0x00f5ff,0.05);
-makeCar(14,11,0xff2d78,-0.06);
+makeCar(-28,11,0xc8a966);makeCar(-12,12,0xf4d080,0.07);makeCar(5,11,0xc8a966,-0.05);
+makeCar(22,12,0xef9f27);makeCar(36,11,0xc8a966,0.06);makeCar(-20,13,0xf4a843,0.04);makeCar(14,12,0xddaa55,-0.04);
 
-// Puddles
-[[-24,5],[0,8],[18,7],[-10,10],[32,9]].forEach(([x,z])=>{
-  const pm=new THREE.Mesh(new THREE.PlaneGeometry(4+Math.random()*4,2+Math.random()*2),new THREE.MeshStandardMaterial({color:0x060a1e,roughness:0.0,metalness:1.0,opacity:0.75,transparent:true}));
-  pm.rotation.x=-Math.PI/2;pm.position.set(x,0.005,z);scene.add(pm);
-});
+// Stars
+const starG=new THREE.BufferGeometry();const starP=new Float32Array(1000*3);
+for(let i=0;i<1000*3;i+=3){starP[i]=(Math.random()-0.5)*380;starP[i+1]=22+Math.random()*85;starP[i+2]=-16-Math.random()*190;}
+starG.setAttribute('position',new THREE.BufferAttribute(starP,3));
+scene.add(new THREE.Points(starG,new THREE.PointsMaterial({color:0xfff8ee,size:0.16,opacity:0.5,transparent:true})));
 
-// Global neon ambience
-nL(0x00f5ff,-60,10,5,2,80);nL(0xef9f27,60,10,5,2,80);nL(0x39ff14,0,15,-30,2,60);nL(0xff2d78,-20,8,15,1.5,40);
+// Soft rain
+const rainG=new THREE.BufferGeometry();const RC=1000;const rainP=new Float32Array(RC*3);
+for(let i=0;i<RC*3;i+=3){rainP[i]=(Math.random()-0.5)*190;rainP[i+1]=Math.random()*58;rainP[i+2]=(Math.random()-0.5)*95;}
+rainG.setAttribute('position',new THREE.BufferAttribute(rainP,3));
+scene.add(new THREE.Points(rainG,new THREE.PointsMaterial({color:0x9aa4b4,size:0.042,opacity:0.1,transparent:true})));
 
-// Rain
-const rainGeo=new THREE.BufferGeometry();
-const RC=6000;const rp=new Float32Array(RC*3);
-for(let i=0;i<RC*3;i+=3){rp[i]=(Math.random()-0.5)*200;rp[i+1]=Math.random()*70;rp[i+2]=(Math.random()-0.5)*100;}
-rainGeo.setAttribute('position',new THREE.BufferAttribute(rp,3));
-scene.add(new THREE.Points(rainGeo,new THREE.PointsMaterial({color:0x6688bb,size:0.07,opacity:0.3,transparent:true})));
+wL(0xf4a843,-70,10,6,2.8,90);wL(0xc8a966,70,10,6,2.4,90);wL(0x4a9eff,0,5,-48,1.6,65);wL(0xf4c866,0,15,10,1.3,55);
 
-// Skills data
-const skills=[
-  {n:'Systems Thinking',v:90,c:'#39ff14'},{n:'Research & Analysis',v:88,c:'#39ff14'},
-  {n:'Python / SciPy',v:85,c:'#00f5ff'},{n:'Kinematics',v:80,c:'#39ff14'},
-  {n:'Crypto / Markets',v:78,c:'#ef9f27'},{n:'C++ / OpenGL',v:75,c:'#00f5ff'},
-  {n:'Materials Science',v:75,c:'#ff2d78'},{n:'SolidWorks',v:70,c:'#39ff14'},
-  {n:'Three.js / WebGL',v:70,c:'#00f5ff'},{n:'LaTeX',v:65,c:'#bf5af2'},
-  {n:'LabVIEW',v:60,c:'#bf5af2'},
-];
-document.getElementById('skills-grid').innerHTML=skills.map(s=>`
-<div class="sbar">
-  <div class="sn"><span style="color:${s.c}">${s.n}</span><span style="color:${s.c}66">${s.v}%</span></div>
-  <div class="st"><div class="sf" style="width:${s.v}%;background:${s.c};box-shadow:0 0 8px ${s.c}60"></div></div>
-</div>`).join('');
+// Controls
+let yaw=0,mxT=0,myT=0,mx=0,my=0,hB=0,cvx=0,cvz=0;
+const keys={};let locked=false,roomO=false,lastZ='',eCD=false;
 
-// ─── CAMERA & CONTROLS ───
-let yaw=0,mxT=0,myT=0,mx=0,my=0,headBob=0;
-let camVX=0,camVZ=0;
-const keys={};let locked=false,panelOpen=false,worldStarted=false;
-let lastZone='',speechT=null,enterCooldown=false;
-
-canvas.addEventListener('click',()=>{if(!panelOpen&&!agentOpen&&worldStarted){try{canvas.requestPointerLock();}catch(e){}}});
-document.addEventListener('pointerlockchange',()=>{
-  locked=document.pointerLockElement===canvas;
-  document.getElementById('hint').style.display=locked?'none':'block';
-});
-document.addEventListener('mousemove',e=>{
-  if(!locked||panelOpen||agentOpen)return;
-  mxT+=e.movementX*0.0016;myT+=e.movementY*0.0016;
-  myT=Math.max(-0.5,Math.min(0.5,myT));
-});
-document.addEventListener('keydown',e=>{
-  keys[e.code]=true;
-  if(e.code==='Escape'){if(agentOpen)closeAgent();else if(panelOpen)closePanel();}
-  if(e.code==='KeyT'&&!panelOpen&&worldStarted)openAgent();
-});
+canvas.addEventListener('click',()=>{if(!roomO&&!agO&&ws)canvas.requestPointerLock();});
+document.addEventListener('pointerlockchange',()=>{locked=document.pointerLockElement===canvas;document.getElementById('hint').style.display=locked?'none':'block';});
+document.addEventListener('mousemove',e=>{if(!locked||roomO||agO)return;mxT+=e.movementX*0.0014;myT+=e.movementY*0.0014;myT=Math.max(-0.46,Math.min(0.46,myT));});
+document.addEventListener('keydown',e=>{keys[e.code]=true;if(e.code==='Escape'){if(agO)closeAg();else if(roomO)closeRoom();}if(e.code==='KeyT'&&!roomO&&ws)openAg();});
 document.addEventListener('keyup',e=>keys[e.code]=false);
 
 function getNear(){
   let near=null,minD=11;
-  bMeshes.forEach(b=>{
-    const dx=camera.position.x-b.district.x,dz=camera.position.z-b.district.z;
-    const d=Math.sqrt(dx*dx+dz*dz);
-    if(d<minD){minD=d;near=b;}
-  });
+  bMeshes.forEach(b=>{const dx=camera.position.x-b.district.x,dz=camera.position.z-b.district.z;const d=Math.sqrt(dx*dx+dz*dz);if(d<minD){minD=d;near=b;}});
   return near;
 }
 
-function openPanel(id){
-  document.querySelectorAll('.dpanel').forEach(p=>p.classList.remove('open'));
-  const el=document.getElementById('dp-'+id);
-  if(el){el.classList.add('open');panelOpen=true;if(locked)document.exitPointerLock();}
+function openRoom(id){
+  document.querySelectorAll('.room').forEach(r=>r.classList.remove('open'));
+  const el=document.getElementById('room-'+id);
+  if(el){el.classList.add('open');roomO=true;if(locked)document.exitPointerLock();if(id==='trading')setTimeout(initChart,300);}
 }
-function closePanel(){document.querySelectorAll('.dpanel').forEach(p=>p.classList.remove('open'));panelOpen=false;}
-window.closePanel=closePanel;window.openAgent=openAgent;window.closeAgent=closeAgent;
-window.sendMessage=sendMessage;window.quickAsk=quickAsk;
+function closeRoom(){document.querySelectorAll('.room').forEach(r=>r.classList.remove('open'));roomO=false;}
+window.closeRoom=closeRoom;
 
-function startWorld(){
-  worldStarted=true;
-  const intro=document.getElementById('intro');
-  intro.classList.add('fade');
-  setTimeout(()=>{intro.remove();document.getElementById('agent-btn').style.display='block';},1800);
-}
-window.startWorld=startWorld;
-document.getElementById('enter-btn').addEventListener('click',startWorld);
-
-// ─── GAME LOOP ───
 const clock=new THREE.Clock();let t=0;
 
 function animate(){
-  requestAnimationFrame(animate);
-  const dt=Math.min(clock.getDelta(),0.05);t+=dt;
-
-  if(!panelOpen&&!agentOpen&&worldStarted){
+  requestAnimationFrame(animate);const dt=Math.min(clock.getDelta(),0.05);t+=dt;
+  if(!roomO&&!agO&&ws){
     mx+=(mxT-mx)*0.1;my+=(myT-my)*0.1;yaw=-mx;
-    const speed=7.5*dt;
-    const fwd=new THREE.Vector3(-Math.sin(yaw),0,-Math.cos(yaw));
-    const right=new THREE.Vector3(Math.cos(yaw),0,-Math.sin(yaw));
-    const dir=new THREE.Vector3();let moving=false;
-    if(keys['KeyW']||keys['ArrowUp']){dir.add(fwd);moving=true;}
-    if(keys['KeyS']||keys['ArrowDown']){dir.sub(fwd);moving=true;}
-    if(keys['KeyA']||keys['ArrowLeft']){dir.sub(right);moving=true;}
-    if(keys['KeyD']||keys['ArrowRight']){dir.add(right);moving=true;}
-    if(moving){const m=dir.normalize().multiplyScalar(speed);camVX+=(m.x-camVX)*0.28;camVZ+=(m.z-camVZ)*0.28;headBob+=dt*9;}
-    else{camVX*=0.78;camVZ*=0.78;}
-    camera.position.x+=camVX;camera.position.z+=camVZ;
-    camera.position.x=Math.max(-60,Math.min(60,camera.position.x));
-    camera.position.z=Math.max(-20,Math.min(40,camera.position.z));
-    camera.position.y=2.8+Math.sin(headBob)*0.09;
+    const spd=7*dt,fwd=new THREE.Vector3(-Math.sin(yaw),0,-Math.cos(yaw)),rgt=new THREE.Vector3(Math.cos(yaw),0,-Math.sin(yaw));
+    const dir=new THREE.Vector3();let mov=false;
+    if(keys['KeyW']||keys['ArrowUp']){dir.add(fwd);mov=true;}
+    if(keys['KeyS']||keys['ArrowDown']){dir.sub(fwd);mov=true;}
+    if(keys['KeyA']||keys['ArrowLeft']){dir.sub(rgt);mov=true;}
+    if(keys['KeyD']||keys['ArrowRight']){dir.add(rgt);mov=true;}
+    if(mov){const m=dir.normalize().multiplyScalar(spd);cvx+=(m.x-cvx)*0.24;cvz+=(m.z-cvz)*0.24;hB+=dt*8;}
+    else{cvx*=0.78;cvz*=0.78;}
+    camera.position.x+=cvx;camera.position.z+=cvz;
+    camera.position.x=Math.max(-62,Math.min(62,camera.position.x));
+    camera.position.z=Math.max(-20,Math.min(44,camera.position.z));
+    camera.position.y=2.8+Math.sin(hB)*0.07;
     camera.rotation.order='YXZ';camera.rotation.y=yaw;camera.rotation.x=-my;
   }
-
-  // Rain
-  const rpa=rainGeo.attributes.position.array;
-  for(let i=1;i<RC*3;i+=3){
-    rpa[i]-=22*dt;
-    if(rpa[i]<0){rpa[i]=70;rpa[i-1]=(Math.random()-0.5)*200;rpa[i+1]=(Math.random()-0.5)*100;}
-  }
-  rainGeo.attributes.position.needsUpdate=true;
-
-  // Window flicker
-  bMeshes.forEach((b,i)=>{
-    b.group.children.forEach(c=>{
-      if(c.isMesh&&c!==b.mesh&&c.material?.emissiveIntensity!==undefined)
-        c.material.emissiveIntensity=0.4+0.7*Math.abs(Math.sin(t*1.8+i*0.8+c.position.x*0.4));
-    });
-    if(b.sign)b.sign.position.y=b.district.h+2.2+Math.sin(t*0.7+i*0.9)*0.18;
+  seaM.opacity=0.76+Math.sin(t*0.38)*0.065;
+  const rpa=rainG.attributes.position.array;
+  for(let i=1;i<RC*3;i+=3){rpa[i]-=9*dt;if(rpa[i]<0){rpa[i]=58;rpa[i-1]=(Math.random()-0.5)*190;rpa[i+1]=(Math.random()-0.5)*95;}}
+  rainG.attributes.position.needsUpdate=true;
+  bMeshes.forEach((b,idx)=>{
+    b.group.children.forEach(c=>{if(c.isMesh&&c!==b.mesh&&c.material?.emissiveIntensity!==undefined)c.material.emissiveIntensity=0.32+0.52*Math.abs(Math.sin(t*0.65+idx*0.5+c.position.x*0.22));});
+    if(b.sign)b.sign.position.y=b.district.h+2.1+Math.sin(t*0.52+idx)*0.13;
   });
-
-  // Proximity — walk INTO buildings
-  if(worldStarted&&!panelOpen&&!agentOpen){
-    const near=getNear();
-    const toast=document.getElementById('toast');
-    const zoneEl=document.getElementById('zone-name');
-    if(near){
-      const d=near.district;
-      toast.style.display='block';toast.style.color=d.hex;toast.style.borderColor=d.hex+'55';
-      toast.textContent=`ENTERING ${d.name}`;
-      if(d.id!==lastZone){
-        lastZone=d.id;
-        zoneEl.textContent=d.name;zoneEl.style.color=d.hex;zoneEl.style.textShadow=`0 0 16px ${d.hex}`;
-        if(!enterCooldown){
-          enterCooldown=true;
-          setTimeout(()=>{
-            if(!panelOpen&&!agentOpen&&getNear()?.district.id===d.id)openPanel(d.id);
-            setTimeout(()=>enterCooldown=false,2000);
-          },900);
-        }
-      }
-    } else {
-      toast.style.display='none';
-      if(lastZone!==''){
-        lastZone='';
-        zoneEl.textContent='MAIN STREET';zoneEl.style.color='#00f5ff';
-        zoneEl.style.textShadow='0 0 12px #00f5ff88';
-      }
+  const near=getNear();
+  const toast=document.getElementById('toast');const zn=document.getElementById('zn');
+  if(near&&!roomO&&!agO&&ws){
+    const d=near.district;
+    toast.style.display='block';toast.style.color=d.hex;toast.style.borderColor=d.hex+'33';toast.textContent='entering '+d.name.toLowerCase();
+    if(d.id!==lastZ){
+      lastZ=d.id;zn.textContent=d.name;zn.style.color=d.hex;zn.style.textShadow=`0 0 14px ${d.hex}55`;
+      if(!eCD){eCD=true;setTimeout(()=>{if(!roomO&&!agO&&getNear()?.district.id===d.id)openRoom(d.id);setTimeout(()=>eCD=false,2500);},900);}
     }
+  } else {
+    toast.style.display='none';
+    if(lastZ!==''){lastZ='';zn.textContent='The Mediterranean';zn.style.color='#c8a966';zn.style.textShadow='0 0 12px #c8a96633';}
   }
-
   renderer.render(scene,camera);
 }
 animate();
 
-window.addEventListener('resize',()=>{
-  renderer.setSize(window.innerWidth,window.innerHeight);
-  camera.aspect=window.innerWidth/window.innerHeight;
-  camera.updateProjectionMatrix();
-});
-
-// API KEY CONFIG — set this to your Anthropic key when deploying
-// window.ANTHROPIC_API_KEY = 'sk-ant-...your-key-here...';
-</script>
-<script>
-function checkPassword(){var val=document.getElementById("pw-input").value;var err=document.getElementById("pw-error");if(val==="09092006"){var s=document.getElementById("password-screen");s.style.transition="opacity 1s ease";s.style.opacity="0";s.style.pointerEvents="none";setTimeout(function(){s.remove();},800);}else{err.classList.add("show");document.getElementById("pw-input").value="";document.getElementById("pw-input").style.borderBottomColor="#ff2d78";setTimeout(function(){err.classList.remove("show");document.getElementById("pw-input").style.borderBottomColor="#00f5ff44";},2000);}}
-document.getElementById("pw-input").addEventListener("keydown",function(e){if(e.key==="Enter")checkPassword();});
-window.checkPassword=checkPassword;
+window.addEventListener('resize',()=>{renderer.setSize(window.innerWidth,window.innerHeight);camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();});
+// window.ANTHROPIC_API_KEY = 'sk-ant-...';
 </script>
 </body>
 </html>
